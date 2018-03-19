@@ -13,6 +13,7 @@ import { ContactsComponent } from './main/contacts/contacts.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
+import { RoutingModule } from './routing.module';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { MaterialModule } from './material.module';
   ],
   imports: [
     BrowserModule,
-    MaterialModule
+    MaterialModule,
+    RoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
