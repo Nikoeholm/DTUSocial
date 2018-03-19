@@ -3,15 +3,29 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
-import { AuthComponent } from './auth/auth.component';
 import { HeaderComponent } from './header/header.component';
+import { MainComponent } from './main/main.component';
+import { ContainerComponent } from './main/container/container.component';
+import { ChatComponent } from './main/container/chat/chat.component';
+import { DriveComponent } from './main/container/drive/drive.component';
+import { TodoComponent } from './main/todo/todo.component';
+import { ContactsComponent } from './main/contacts/contacts.component';
+import { FooterComponent } from './footer/footer.component';
+import { ProfileComponent } from './main/profile/profile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent,
-    HeaderComponent
+    HeaderComponent,
+    MainComponent,
+    ContainerComponent,
+    ChatComponent,
+    DriveComponent,
+    TodoComponent,
+    ContactsComponent,
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule
