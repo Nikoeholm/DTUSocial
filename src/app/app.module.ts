@@ -11,7 +11,7 @@ import { DriveComponent } from './main/container/drive/drive.component';
 import { TodoComponent } from './main/todo/todo.component';
 import { ContactsComponent } from './main/contacts/contacts.component';
 import { FooterComponent } from './footer/footer.component';
-import { ProfileComponent } from './main/profile/profile.component';
+import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
 
 
