@@ -12,6 +12,7 @@ import { TodoComponent } from './main/todo/todo.component';
 import { ContactsComponent } from './main/contacts/contacts.component';
 import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './main/profile/profile.component';
+import { MaterialModule } from './material.module';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ProfileComponent } from './main/profile/profile.component';
     ProfileComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
