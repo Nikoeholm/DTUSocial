@@ -1,0 +1,9 @@
+mat-sidenav-container{
+  margin: 10px 0;
+  border-style: solid solid solid hidden;
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+  height: 100%;
+}
+
