@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactsComponent implements OnInit {
 
+  groups = ['CDIO', 'DTU Social', 'Android', 'Galgeleg'];
+
+  persons = ['Agam', 'Khurram', 'Morten', 'Nikolaj'];
+
   constructor() { }
 
   ngOnInit() {

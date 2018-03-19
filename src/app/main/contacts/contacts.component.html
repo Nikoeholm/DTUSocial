@@ -1,12 +1,11 @@
-<mat-sidenav-container>
+<mat-sidenav-container >
   <mat-sidenav>Start</mat-sidenav>
   <mat-sidenav position="end">End</mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content >
     <p>Grupper:</p>
-    <div class="example-events">
-    </div>
+      <li *ngFor="let group of groups">{{group}}</li><br/>
     <p>Personer:</p>
-    <div class="example-events">
-    </div>
+    <li *ngFor="let person of persons">{{person}}</li>
+
   </mat-sidenav-content>
 </mat-sidenav-container>
