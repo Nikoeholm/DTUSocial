@@ -1,15 +1,16 @@
-<mat-toolbar color="primary">  
+<mat-toolbar color="primary">
     <mat-toolbar-row>
-      <span class="spacer">DTU Social</span>
+      <span class="padding-right">DTU Social</span>
       <button mat-button>Chat</button>
       <button mat-button>Grupper</button>
       <button mat-button>Todo</button>
+      <span class="empty-spacer"></span>
       <mat-menu #appMenu="matMenu">
         <button mat-menu-item>Indstillinger</button>
         <button mat-menu-item>Hjælp</button>
       </mat-menu>
-      
-      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+
+      <button class="align-right" mat-icon-button [matMenuTriggerFor]="appMenu">
         <mat-icon>Profile</mat-icon>
       </button>
     </mat-toolbar-row>

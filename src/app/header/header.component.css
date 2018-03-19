@@ -1,3 +1,11 @@
-.spacer {
-    padding-right: 20px; 
+.padding-right {
+    padding-right: 20px;
+}
+
+.align-right {
+  padding-right: 20px;
+}
+
+.empty-spacer {
+  flex: 1 1 auto;
 }
