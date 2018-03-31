@@ -17,6 +17,7 @@ import { RoutingModule } from './routing.module';
 import { LoginComponent } from './main/login/login.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,7 +39,7 @@ import {HttpModule} from '@angular/http';
     MaterialModule,
     RoutingModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
