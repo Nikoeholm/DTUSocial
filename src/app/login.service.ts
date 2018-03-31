@@ -15,7 +15,7 @@ export class LoginService {
 
   public postCredentials(credentials: Credentials) {
     // Reach to rest-endpoint
-    return this.http.post('http://localhost:8080/DTUSocial/login', JSON.stringify(credentials);, httpOptions);
+    return this.http.post('http://localhost:8080/DTUSocial/login', JSON.stringify(credentials), httpOptions);
   }
 
 }
