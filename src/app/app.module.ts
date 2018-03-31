@@ -14,6 +14,9 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
+import { LoginComponent } from './main/login/login.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 
 @NgModule({
@@ -27,12 +30,15 @@ import { RoutingModule } from './routing.module';
     TodoComponent,
     ContactsComponent,
     FooterComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     MaterialModule,
-    RoutingModule
+    RoutingModule,
+    ReactiveFormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
