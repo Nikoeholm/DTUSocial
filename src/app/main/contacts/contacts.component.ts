@@ -11,6 +11,8 @@ export class ContactsComponent implements OnInit {
 
   persons = ['Agam', 'Khurram', 'Morten', 'Nikolaj'];
 
+  test = false;
+
   constructor() { }
 
   ngOnInit() {

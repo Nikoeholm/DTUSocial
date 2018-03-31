@@ -1,11 +1,11 @@
 <mat-card class="fill-window">
     <h5>Grupper</h5>
-    <mat-list *ngFor="let group of groups">
-        <mat-list-item> {{ group }}</mat-list-item>
+    <mat-list *ngFor="let group of groups" class="mat-raised-button">
+        <mat-list-item>{{ group }}</mat-list-item>
     </mat-list>
-      
+
     <h5>Personer</h5>
-    <mat-list *ngFor="let person of persons">
+    <mat-list *ngFor="let person of persons" class="mat-raised-button">
         <mat-list-item> {{ person }}</mat-list-item>
     </mat-list>
 </mat-card>
