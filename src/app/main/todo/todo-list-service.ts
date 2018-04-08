@@ -1,9 +1,11 @@
 import {Todo} from './todo.model';
+import {EventEmitter} from '@angular/core';
 
 export class TodoListService {
+  todosChanged = new EventEmitter<Todo[]>();
   todos: Todo[] = [
-    new Todo(1, 'Testbesked', false),
-    new Todo(2, 'Test', false)
+    new Todo('Testbesked'),
+    new Todo('Test')
   ];
 
   getTodo() {
@@ -11,8 +13,10 @@ export class TodoListService {
   }
   addTodo(todo: Todo) {
     this.todos.push(todo);
+    this.todosChanged.emit(this.todos.slice());
   }
   addTodos(todos: Todo[]) {
     this.todos.push(...todos);
+    this.todosChanged.emit(this.todos.slice());
   }
 }

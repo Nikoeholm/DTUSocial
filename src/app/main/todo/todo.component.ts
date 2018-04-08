@@ -6,17 +6,18 @@ import {TodoListService} from './todo-list-service';
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.css'],
-  providers: [TodoListService]
 })
 export class TodoComponent implements OnInit {
-  todos: Todo[] = [
-    new Todo(1, 'Testbesked', false),
-    new Todo(2, 'Test', false)
-  ];
+  todos: Todo[];
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private todoService: TodoListService) {
   }
 
+  ngOnInit() {
+    this.todos = this.todoService.getTodo();
+    this.todoService.todosChanged.subscribe((todos: Todo[]) => {
+        this.todos = todos;
+      }
+    );
+  }
 }

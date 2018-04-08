@@ -1,6 +1,21 @@
-<mat-card class="fill-window">
-<h5>Din Todo liste: </h5>
-<mat-form-field>
-<input matInput placeholder="Tilføj din todo:">
-</mat-form-field>
-</mat-card>
+<!--<mat-card class="fill-window">-->
+<!--<h5>Din Todo liste: </h5>-->
+<!--<mat-form-field>-->
+<!--<input matInput placeholder="Tilføj din todo:">-->
+<!--</mat-form-field>-->
+<!--</mat-card>-->
+
+<div class="fill-window">
+          <label for="todoMessage">Din todo liste</label>
+  <p>
+          <input
+            type="text"
+            id="todoMessage"
+            class="form-control"
+            #messageInput>
+            <button class="btn btn-primary" (click)="onAddItem()">Tilføj</button>
+  </p>
+
+
+  </div>
+

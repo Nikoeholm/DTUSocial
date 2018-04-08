@@ -14,20 +14,23 @@ import {Todo} from '../todo.model';
   styleUrls: ['./todo-edit.component.css']
 })
 export class TodoEditComponent implements OnInit {
-  @ViewChild('nameInput') nameInputRef: ElementRef;
-  @ViewChild('amountInput') amountInputRef: ElementRef;
+  @ViewChild('messageInput') messageInputRef: ElementRef;
 
   constructor(private todoService: TodoListService) { }
+
+  messages = [];
 
   ngOnInit() {
   }
 
   onAddItem() {
-    const id = this.nameInputRef.nativeElement.value;
-    const message = this.amountInputRef.nativeElement.value;
-    const done = this.amountInputRef.nativeElement.value;
-    const newTodo = new Todo(id, message, done);
+    const todomessage = this.messageInputRef.nativeElement.value;
+    const newTodo = new Todo(todomessage);
     this.todoService.addTodo(newTodo);
+
+    // const todomessage = this.messageInputRef.nativeElement.value;
+    // this.messages.push(todomessage);
+    // this.messageInputRef.nativeElement.value = "";
   }
 
 }

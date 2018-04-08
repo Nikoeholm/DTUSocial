@@ -20,6 +20,7 @@ import {HttpModule} from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './main/login/login.service';
 import {TodoEditComponent} from './main/todo/todo-edit/todo-edit.component';
+import {TodoListService} from './main/todo/todo-list-service';
 
 
 @NgModule({
@@ -44,7 +45,7 @@ import {TodoEditComponent} from './main/todo/todo-edit/todo-edit.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [LoginService],
+  providers: [LoginService, TodoListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
