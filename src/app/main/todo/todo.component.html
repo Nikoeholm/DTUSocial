@@ -1,8 +1,17 @@
+<!--<mat-card class="fill-window">-->
+  <!--<h5>Todo</h5>-->
+  <!--<mat-form-field>-->
+    <!--<input matInput placeholder="Tilføj din todo:">-->
+  <!--</mat-form-field>-->
+<!--</mat-card>-->
+
+
 <mat-card class="fill-window">
-  <h5>Todo</h5>
-  <mat-form-field>
-      <input matInput placeholder="Tilføj din todo:">
-    </mat-form-field>
+  <mat-list-item *ngFor="let todo of todos">
+    <h3> {{todo.message}} </h3>
+    <p matLine>{{'----'}}</p>
+  </mat-list-item>
 </mat-card>
+
 
 
