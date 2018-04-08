@@ -1,4 +1,8 @@
+
 <div class="login-page">
+  <div align="center">
+    <img src="/assets/DTU-logo.jpg" height="150" width="150"/>
+  </div><br>
   <div class="form">
     <!--<form [formGroup]="loginForm" class="register-form">
       <input type="text" placeholder="Name"/>
@@ -18,7 +22,7 @@
         <span *ngIf="loginForm.get('userName').errors['required']"
               class="alert alert-danger">
           Udfyld Brugernavn
-        </span>
+        </span><br>
       </span><br>
       <input type="password"
              id="passWord"
@@ -30,7 +34,7 @@
         <span *ngIf="loginForm.get('passWord').errors['required']"
               class="alert alert-danger">
           Udfyld Adgangskode
-        </span>
+        </span><br>
       </span><br>
       <button>login</button>
       <p class="message"> <a href="#">Glemt adgangkode?</a></p>
