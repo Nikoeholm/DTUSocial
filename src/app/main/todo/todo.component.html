@@ -1,17 +1,22 @@
-<!--<mat-card class="fill-window">-->
-  <!--<h5>Todo</h5>-->
-  <!--<mat-form-field>-->
-    <!--<input matInput placeholder="Tilføj din todo:">-->
-  <!--</mat-form-field>-->
-<!--</mat-card>-->
+<app-todo-edit></app-todo-edit>
+<div class="fill-window">
 
 
-<mat-card class="fill-window">
   <mat-list-item *ngFor="let todo of todos">
     <h3> {{todo.message}} </h3>
     <p matLine>{{'----'}}</p>
   </mat-list-item>
-</mat-card>
+</div>
 
 
+<!--<div class="fill-window">-->
+    <!--<app-todo-edit></app-todo-edit>-->
+    <!--<hr>-->
+      <!--<a-->
+        <!--style="cursor: pointer"-->
+        <!--*ngFor="let todo of todos"-->
+      <!--&gt;-->
+        <!--{{ todo.message }} ({{ todo.done }})-->
+      <!--</a>-->
+<!--</div>-->
 
