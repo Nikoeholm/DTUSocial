@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Credentials} from './main/login/credentials.model';
+import {Credentials} from './credentials.model';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -15,7 +15,7 @@ const httpOptions = {
 @Injectable()
 export class LoginService {
 
-  token: any;
+  token: string;
 
   constructor(private http: HttpClient, router: Router) {}
 
@@ -24,10 +24,8 @@ export class LoginService {
     return this.http.post('http://localhost:8080/DTUSocial/login', JSON.stringify(credentials), httpOptions)
     .map(
       (response: Response) => {
-        const data = response.json();
-        this.token = data;
-        console.log(this.token)
-        return data;
+        this.token = response.toString();
+        return this.token;
       }
     )
       .catch(
@@ -36,6 +34,18 @@ export class LoginService {
           return Observable.throw('Login failed');
         }
       );
+  }
+
+  logout() {
+    this.token = null;
+  }
+
+  getToken() {
+    return this.token;
+  }
+
+  isAuthenticated() {
+    return this.token != null;
   }
 
 }

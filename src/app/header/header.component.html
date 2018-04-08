@@ -8,6 +8,7 @@
       <mat-menu #appMenu="matMenu">
         <button mat-menu-item>Indstillinger</button>
         <button mat-menu-item>Hjælp</button>
+        <button mat-menu-item (click)="logout()">Logud</button>
       </mat-menu>
 
       <button class="align-right" mat-icon-button [matMenuTriggerFor]="appMenu">
