@@ -1,1 +1,15 @@
-<iframe src="https://drive.google.com/embeddedfolderview?id=1hFpfWgGNl5_fRjdJlSq0sF3RRxFpDUTd#list" style="width:100%; height:600px; border:0;"></iframe>
+
+<br><div *ngIf="!urlGiven" align="center">
+  <h4 style="color: #3f51b5">Hov du har ikke tilknyttet en drive mappe endnu</h4>
+<p>
+  <mat-form-field class="full-width">
+    <input type="text" id="url" matInput placeholder="URL til din drive-mappe." #urlInput>
+  </mat-form-field>
+  <button mat-button style="color: #3f51b5" (click)="onGetURL()">Tilknyt</button>
+</p>
+</div>
+
+<div *ngIf="urlGiven">
+<iframe [src]="this.sanitizer.bypassSecurityTrustResourceUrl(this.url)" style="width:100%; height:600px; border:0;"></iframe>
+  <button>Skift drive mapppe</button>
+</div>
