@@ -1,4 +1,4 @@
 .fill-window {
     min-height: 500px;
-    height: 100vh;
+    height: auto 100vh;
 }

@@ -1,7 +1,7 @@
 /* Chat containers */
 .content {
   min-height: 500px;
-  height: 100vh;
+  height: 80vh;
   overflow: scroll;
 }
 
