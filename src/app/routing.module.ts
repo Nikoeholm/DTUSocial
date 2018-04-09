@@ -6,8 +6,8 @@ import { MainComponent } from './main/main.component';
 import { LoginComponent } from './main/login/login.component';
 import { AuthGuard } from './shared/service/auth-guard.service';
 import {TodoListComponent} from './main/todo/todo-list.component';
-import {ChatComponent} from "./main/container/chat/chat.component";
-import {ChatWindowComponent} from "./main/container/chat/specific-chat/chat-window/chat-window.component";
+import {ChatComponent} from './main/container/chat/chat.component';
+import {ChatWindowComponent} from './main/container/chat/specific-chat/chat-window/chat-window.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'chat', pathMatch: 'full' },

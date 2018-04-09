@@ -15,14 +15,14 @@ import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './main/login/login.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
-import {TodoEditComponent} from './main/todo/todo-edit/todo-edit.component';
-import {TodoListService} from './shared/service/todo-list-service';
-import {AuthGuard} from "./shared/service/auth-guard.service";
-import {ChatWindowComponent} from "./main/container/chat/specific-chat/chat-window/chat-window.component";
+import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
+import { TodoListService } from './shared/service/todo-list-service';
+import { AuthGuard } from './shared/service/auth-guard.service';
+import { ChatWindowComponent } from './main/container/chat/specific-chat/chat-window/chat-window.component';
 
 
 @NgModule({
