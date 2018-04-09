@@ -25,6 +25,9 @@ export class LoginService {
     .map(
       (response: Response) => {
         this.token = response.toString();
+        // Save the token in Localstorage of browser
+        // Run command in console, to check if token is saved: localStorage;
+        window.localStorage.setItem('access_token', this.token);
         return this.token;
       }
     )
@@ -36,7 +39,13 @@ export class LoginService {
       );
   }
 
+  setTokenFromLocalStorage(token: string) {
+    this.token = token;
+  }
+
   logout() {
+    // window.localStorage.clear();
+    window.localStorage.removeItem('access_token');
     this.token = null;
   }
 
