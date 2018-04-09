@@ -1,13 +1,16 @@
 <mat-card class="fill-window">
     <h5>Grupper</h5>
     <hr>
-    <mat-list *ngFor="let group of groups">
-        <mat-list-item><button mat-menu-item>{{ group }}</button></mat-list-item>
+
+    <mat-list
+      *ngFor="let group of groups">
+        <mat-list-item><button mat-menu-item [routerLink]="['group', group.id]">{{ group.name }}</button></mat-list-item>
     </mat-list>
 <br>
     <h5>Personer</h5>
     <hr>
-    <mat-list *ngFor="let person of persons">
-        <mat-list-item><button mat-menu-item>{{ person }}</button></mat-list-item>
+    <mat-list
+      *ngFor="let person of persons">
+        <mat-list-item><button mat-menu-item [routerLink]="['personal', person.id]">{{ person.name }}</button></mat-list-item>
     </mat-list>
 </mat-card>
