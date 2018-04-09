@@ -5,8 +5,8 @@ import {
   ViewChild
 } from '@angular/core';
 
-import {TodoListService} from '../todo-list-service';
-import {Todo} from '../todo.model';
+import {TodoListService} from '../../../shared/service/todo-list-service';
+import {TodoModel} from '../../../shared/model/todo-list.model';
 
 @Component({
   selector: 'app-todo-edit',
@@ -18,19 +18,13 @@ export class TodoEditComponent implements OnInit {
 
   constructor(private todoService: TodoListService) { }
 
-  messages = [];
-
   ngOnInit() {
   }
 
   onAddItem() {
     const todomessage = this.messageInputRef.nativeElement.value;
-    const newTodo = new Todo(todomessage);
+    const newTodo = new TodoModel(todomessage);
     this.todoService.addTodo(newTodo);
-
-    // const todomessage = this.messageInputRef.nativeElement.value;
-    // this.messages.push(todomessage);
-    // this.messageInputRef.nativeElement.value = "";
   }
 
 }

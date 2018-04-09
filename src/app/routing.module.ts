@@ -4,7 +4,7 @@ import { ContactsComponent } from './main/contacts/contacts.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MainComponent } from './main/main.component';
 import { LoginComponent } from './main/login/login.component';
-import { AuthGuard } from './main/login/auth-guard.service';
+import { AuthGuard } from './shared/service/auth-guard.service';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
