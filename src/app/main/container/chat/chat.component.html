@@ -1,28 +1,26 @@
 <div class="content">
   <div class="container">
     <img src="/assets/blank-profile.png" alt="Avatar">
-    <p>Hello. How are you today?</p>
+    <p class="text-style">Hello. How are you today?</p>
     <span class="time-right">11:00</span>
   </div>
 
   <div class="container darker">
     <img src="/assets/blank-profile.png" alt="Avatar" class="right">
-    <p>Hey! I'm fine. Thanks for asking!</p>
+    <p class="text-style">Hey! I'm fine. Thanks for asking!</p>
     <span class="time-left">11:01</span>
   </div>
 
   <div class="container">
     <img src="/assets/blank-profile.png" alt="Avatar">
-    <p>Sweet! So, what do you wanna do today?</p>
+    <p class="text-style">Sweet! So, what do you wanna do today?</p>
     <span class="time-right">11:02</span>
   </div>
-
-
 
   <div *ngFor="let message of messages">
     <div class="container darker">
       <img src="https://i.pinimg.com/originals/5f/ee/8b/5fee8bba26cfac952edcdb3017adc115.jpg" alt="Avatar" class="right">
-      <p>{{message}}</p>
+      <p class="text-style">{{message}}</p>
       <span class="time-left">11:05</span>
     </div>
   </div>
