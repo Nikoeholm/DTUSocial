@@ -1,5 +1,18 @@
-/*.fill-window {*/
-    /*height: 100vh;*/
-    /*min-height: 500px;*/
-    /*max-height: 100vh;*/
-/*}*/
+.fill-window {
+    height: 100vh;
+    min-height: 500px;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.card{
+  box-shadow: #aaaaaa;
+  text-align: left;
+}
+
+.margin {
+  margin-bottom: 10px;
+}
+
+
+

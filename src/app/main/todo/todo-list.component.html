@@ -1,22 +1,11 @@
 <app-todo-edit></app-todo-edit>
-<div class="fill-window">
+
+<mat-selection-list #todomessage>
+  <mat-list-option *ngFor="let todo of todos" class="card margin">
+    {{todo.message}}
+  </mat-list-option>
+
+</mat-selection-list>
 
 
-  <mat-list-item *ngFor="let todo of todos">
-    <h3> {{todo.message}} </h3>
-    <p matLine>{{'----'}}</p>
-  </mat-list-item>
-</div>
-
-
-<!--<div class="fill-window">-->
-    <!--<app-todo-edit></app-todo-edit>-->
-    <!--<hr>-->
-      <!--<a-->
-        <!--style="cursor: pointer"-->
-        <!--*ngFor="let todo of todos"-->
-      <!--&gt;-->
-        <!--{{ todo.message }} ({{ todo.done }})-->
-      <!--</a>-->
-<!--</div>-->
 

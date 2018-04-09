@@ -15,6 +15,7 @@ import {TodoModel} from '../../../shared/model/todo-list.model';
 })
 export class TodoEditComponent implements OnInit {
   @ViewChild('messageInput') messageInputRef: ElementRef;
+  todomessage: string;
 
   constructor(private todoService: TodoListService) { }
 
@@ -22,9 +23,10 @@ export class TodoEditComponent implements OnInit {
   }
 
   onAddItem() {
-    const todomessage = this.messageInputRef.nativeElement.value;
-    const newTodo = new TodoModel(todomessage);
+    this.todomessage = this.messageInputRef.nativeElement.value;
+    const newTodo = new TodoModel(this.todomessage);
     this.todoService.addTodo(newTodo);
+    this.messageInputRef.nativeElement.value = "";
   }
 
 }
