@@ -8,12 +8,13 @@ import { AuthGuard } from './shared/service/auth-guard.service';
 import {TodoListComponent} from './main/todo/todo-list.component';
 import {ChatComponent} from './main/container/chat/chat.component';
 import {ChatWindowComponent} from './main/container/chat/specific-chat/chat-window/chat-window.component';
+import { ContainerComponent } from './main/container/container.component';
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'chat', pathMatch: 'full' },
+    { path: '', redirectTo: 'container', pathMatch: 'full' },
     { path: 'login', component: LoginComponent},
     { path: 'todo', component: TodoListComponent},
-    { path: 'chat', component: ChatComponent, canActivate: [AuthGuard], children: [
+    { path: 'container', component: ContainerComponent, canActivate: [AuthGuard], children: [
       { path: 'group/:id', component: ChatWindowComponent },
       { path: 'personal/:id', component: ChatWindowComponent }]},
     { path: 'groups', component: MainComponent},

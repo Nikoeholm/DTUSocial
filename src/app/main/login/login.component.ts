@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Credentials} from '../../shared/model/credentials.model';
 import { LoginService } from '../../shared/service/login.service';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
       (error) => console.log(error)
     );
     console.log(this.loginForm.get('userName').value);
-    this.router.navigate(['/chat']);
+    this.router.navigate(['/container']);
   }
 
 }
