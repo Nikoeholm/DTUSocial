@@ -1,11 +1,14 @@
+<mat-card class="fill-window">
 <app-todo-edit></app-todo-edit>
 
 <mat-selection-list #todomessage>
-  <mat-list-option *ngFor="let todo of todos" class="card margin">
+  <mat-list-option *ngFor="let todo of todos" class="margin">
     {{todo.message}}
   </mat-list-option>
 
 </mat-selection-list>
+
+</mat-card>
 
 
 
