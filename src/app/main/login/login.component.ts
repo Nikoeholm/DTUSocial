@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Credentials} from '../../shared/model/credentials.model';
 import { LoginService } from '../../shared/service/login.service';
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   private credentials: Credentials;
 
-  constructor(private formBuilder: FormBuilder, private loginService: LoginService) { }
+  constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
       (error) => console.log(error)
     );
     console.log(this.loginForm.get('userName').value);
-
+    this.router.navigate(['/chat']);
   }
 
 }

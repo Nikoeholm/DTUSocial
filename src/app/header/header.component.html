@@ -1,14 +1,14 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span class="padding-right">DTU Social</span>
-      <button mat-button>Chat</button>
-      <button mat-button>Grupper</button>
-      <button mat-button>Todo</button>
+      <button mat-button routerLink="/chat">Chat</button>
+      <button mat-button routerLink="/groups">Grupper</button>
+      <button mat-button routerLink="/todo">Todo</button>
       <span class="empty-spacer"></span>
       <mat-menu #appMenu="matMenu">
-        <button mat-menu-item>Indstillinger</button>
-        <button mat-menu-item>Hjælp</button>
-        <button mat-menu-item (click)="logout()">Logud</button>
+        <button mat-menu-item routerLink="/settings">Indstillinger</button>
+        <button mat-menu-item routerLink="/help">Hjælp</button>
+        <button mat-menu-item routerLink="/login"(click)="logout()">Logud</button>
       </mat-menu>
 
       <button class="align-right" mat-icon-button [matMenuTriggerFor]="appMenu">
