@@ -1,5 +1,5 @@
 .fill-window {
     height: 100vh;
     min-height: 500px;
-    max-height: 100vh;
+    height: auto;
 }
