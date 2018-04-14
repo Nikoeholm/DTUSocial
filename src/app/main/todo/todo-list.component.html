@@ -2,7 +2,9 @@
 <app-todo-edit></app-todo-edit>
 
 <mat-selection-list #todomessage>
-  <mat-list-option *ngFor="let todo of todos" class="margin">
+  <mat-list-option *ngFor="let todo of todos; let i = index"
+  (click)="onEditTodo(i)">
+
     {{todo.message}}
   </mat-list-option>
 

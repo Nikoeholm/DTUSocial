@@ -15,7 +15,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './main/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
@@ -46,7 +46,8 @@ import { ChatWindowComponent } from './main/container/chat/specific-chat/chat-wi
     MaterialModule,
     RoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [AuthGuard, LoginService, TodoListService],
   bootstrap: [AppComponent]

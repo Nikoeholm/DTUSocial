@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoListService} from '../../shared/service/todo-list-service';
 import {TodoModel} from '../../shared/model/todo-list.model';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-todo',
@@ -9,15 +11,20 @@ import {TodoModel} from '../../shared/model/todo-list.model';
 })
 export class TodoListComponent implements OnInit {
   todos: TodoModel[];
+  private subscription: Subscription;
 
-  constructor(private todoService: TodoListService) {
-  }
+  constructor(private todoService: TodoListService) { }
 
   ngOnInit() {
-    this.todos = this.todoService.getTodo();
+    this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: TodoModel[]) => {
         this.todos = todos;
       }
     );
   }
+
+  onEditTodo(index: number) {
+    this.todoService.startedEditing.next(index);
+  }
+
 }

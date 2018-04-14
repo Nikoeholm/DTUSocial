@@ -1,12 +1,22 @@
 <div class="fill-window">
-  <h3>Todo liste</h3>
-  <p>
-    <mat-form-field>
-      <input type="text" id="todomessage" matInput placeholder="Indtast din todo" #messageInput>
-    </mat-form-field>
-    <button mat-button (click)="onAddItem()">Tilføj</button>
-  </p>
+  <h3>Todo liste:</h3>
+  <mat-form-field>
+
+  <form (ngSubmit)="onAddTodo(f)" #f="ngForm">
+    <input type="text"
+           id="todomessage"
+           class="form-control"
+           name="todomessage"
+           ngModel
+           matInput placeholder="Indtast din todo"/>
+
+    <button
+      class="mat-button"
+      type="submit"
+      [disabled]="!f.valid">{{editMode ? 'Ret todo': 'Tilføj'}}</button>
+  </form>
+  </mat-form-field>
 
 
-  </div>
+</div>
 
