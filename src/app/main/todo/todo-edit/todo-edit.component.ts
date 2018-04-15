@@ -46,9 +46,20 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     } else {
       this.todoService.addTodo(newTodo);
     }
-    this.editMode = false;
+    this.todoForm.reset();
     form.reset();
    }
+
+   onClear() {
+    this.todoForm.reset();
+    this.editMode = false;
+   }
+
+   onDelete() {
+    this.todoService.deleteTodo(this.editedTodoIndex);
+    this.onClear();
+   }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

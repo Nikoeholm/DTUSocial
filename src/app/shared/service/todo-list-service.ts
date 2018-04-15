@@ -11,7 +11,6 @@ export class TodoListService {
     new TodoModel('Test')
   ];
 
-  lastId = 0;
 
   getTodos() {
     return this.todos.slice();
@@ -33,8 +32,8 @@ export class TodoListService {
     this.todosChanged.next(this.todos.slice());
   }
 
-  // deleteTodo(id: number) {
-  //   this.todos = this.todos.filter(todo => todo.id !== id);
-  //   return this;
-  // }
+  deleteTodo(index: number) {
+    this.todos.splice(index,1);
+    this.todosChanged.next(this.todos.slice());
+  }
 }

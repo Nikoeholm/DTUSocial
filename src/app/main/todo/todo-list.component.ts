@@ -11,7 +11,6 @@ import {Subscription} from 'rxjs/Subscription';
 })
 export class TodoListComponent implements OnInit {
   todos: TodoModel[];
-  private subscription: Subscription;
 
   constructor(private todoService: TodoListService) { }
 
