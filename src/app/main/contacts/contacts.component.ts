@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {GroupsComponent} from '../groups/groups.component';
 
 @Component({
   selector: 'app-contacts',
@@ -6,11 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contacts.component.css']
 })
 export class ContactsComponent implements OnInit {
-  groups: {id: number, name: string}[] = [
-          {id: 1, name: 'CDIO'},
-          {id: 2, name: 'DTU Social'},
-          {id: 3, name: 'Android'},
-          {id: 4, name: 'Galgeleg'}];
+
+  groups = new GroupsComponent();
 
   persons: {id: number, name: string}[] = [
         {id: 1, name: 'Agam'},
