@@ -10,15 +10,17 @@ import {GroupsComponent} from '../groups/groups.component';
 })
 export class ContactsComponent implements OnInit {
 
+  groups = new GroupsComponent();
+
   persons: UsersModel[];
 
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
-    this.usersService.getUsers().subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+    // this.usersService.getUsers().subscribe(
+    //   (response) => console.log(response),
+    //   (error) => console.log(error)
+    // );
   }
 
 }
