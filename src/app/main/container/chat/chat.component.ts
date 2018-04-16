@@ -16,11 +16,11 @@ export class ChatComponent implements OnInit{
   ngOnInit() {
   }
 
-  onSendMessage(){
+  onSendMessage() {
 
     const ingMessage = this.messageInputRef.nativeElement.value;
     this.messages.push(ingMessage);
-    this.messageInputRef.nativeElement.value = "";
+    this.messageInputRef.nativeElement.value = '';
 
 }
 

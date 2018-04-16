@@ -4,7 +4,6 @@
 
     <mat-list
       [routerLink]="['group', group.id]"
-      href="#"
       *ngFor="let group of groups">
         <mat-list-item><button mat-menu-item>{{ group.name }}</button></mat-list-item>
     </mat-list>
@@ -13,7 +12,6 @@
     <hr>
     <mat-list
       [routerLink]="['personal', person.id]"
-      href="#"
       *ngFor="let person of persons">
         <mat-list-item><button mat-menu-item>{{ person.name }}</button></mat-list-item>
     </mat-list>

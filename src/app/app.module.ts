@@ -22,7 +22,7 @@ import { LoginService } from './shared/service/login.service';
 import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
 import { TodoListService } from './shared/service/todo-list-service';
 import { AuthGuard } from './shared/service/auth-guard.service';
-import { ChatWindowComponent } from './main/container/chat/specific-chat/chat-window/chat-window.component';
+
 
 
 @NgModule({
@@ -38,8 +38,7 @@ import { ChatWindowComponent } from './main/container/chat/specific-chat/chat-wi
     ContactsComponent,
     FooterComponent,
     ProfileComponent,
-    LoginComponent,
-    ChatWindowComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
