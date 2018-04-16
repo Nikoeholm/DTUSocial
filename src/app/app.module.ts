@@ -23,6 +23,7 @@ import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
 import { TodoListService } from './shared/service/todo-list-service';
 import { AuthGuard } from './shared/service/auth-guard.service';
 import { GroupsComponent } from './main/groups/groups.component';
+import {UsersService} from './shared/service/users.service';
 
 
 
@@ -50,7 +51,7 @@ import { GroupsComponent } from './main/groups/groups.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthGuard, LoginService, TodoListService],
+  providers: [AuthGuard, LoginService, TodoListService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

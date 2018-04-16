@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersModel} from '../../shared/model/users.model';
+import {UsersService} from '../../shared/service/users.service';
 import {GroupsComponent} from '../groups/groups.component';
 
 @Component({
@@ -8,19 +10,15 @@ import {GroupsComponent} from '../groups/groups.component';
 })
 export class ContactsComponent implements OnInit {
 
-  groups = new GroupsComponent();
+  persons: UsersModel[];
 
-  persons: {id: number, name: string}[] = [
-        {id: 1, name: 'Agam'},
-        {id: 2, name: 'Khurram'},
-        {id: 3, name: 'Morten'},
-        {id: 4, name: 'Nikolaj'}];
-
-  test = false;
-
-  constructor() { }
+  constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+    this.usersService.getUsers().subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    );
   }
 
 }
