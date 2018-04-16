@@ -1,23 +1,38 @@
 <div class="fill-window">
-  <h3>Todo liste:</h3>
-  
-  <mat-form-field>
-  <form (ngSubmit)="onAddTodo(f)" #f="ngForm">
-    <input type="text"
-           id="todomessage"
-           class="mat-form-field"
-           name="todomessage"
-           ngModel
-           matInput placeholder="Indtast din todo"/>
+    <h5>Todo liste</h5>
+    <hr>
 
-    <button
-    class="mat-button"
-    type="submit"
-    [disabled]="!f.valid">{{editMode ? 'Ret todo': 'Tilføj'}}</button>
-  </form>
-    <button class="mat-button" type="button" (click)="onClear()">Ryd</button>
-    <button class="mat-button" type="button" (click)="onDelete()" *ngIf="editMode">Slet</button>
-  </mat-form-field>
-
+  <div class="row">   
+    <div class="col-md-9">      
+        <form #form="ngForm">
+        <mat-form-field class="full-width">
+          <input 
+            ngModel
+            name="todomessage"
+            type="text"
+            id="todomessage"
+            matInput
+            placeholder="Indtast din todo" #todomessage>
+        </mat-form-field>
+      </form>
+  </div>
+    <div class="col-md-3">
+      <button style="margin-top: 10px;"
+        color="primary"
+        mat-button
+        (click)="onAddTodo(form)"
+        [disabled]="!form.valid">{{editMode ? 'Ret todo': 'Tilføj'}}</button>
+    </div>
+  </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <button color="accent" mat-button type="button" (click)="onClear()">Nulstil</button>
+  </div>  
+  <div class="col-md-6">
+    <button color="accent" mat-button type="button" (click)="onDelete()" *ngIf="editMode">Slet</button>
+  </div>
+</div>
+  <hr>
 

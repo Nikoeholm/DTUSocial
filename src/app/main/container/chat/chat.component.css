@@ -1,9 +1,5 @@
 /* Chat containers */
-.content {
-  min-height: 500px;
-  height: 75vh;
-  overflow: scroll;
-}
+
 
 .container {
   border: 2px solid #5566c3;

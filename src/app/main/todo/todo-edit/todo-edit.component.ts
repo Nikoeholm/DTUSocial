@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./todo-edit.component.css']
 })
 export class TodoEditComponent implements OnInit, OnDestroy {
-  @ViewChild('f') todoForm: NgForm;
+  @ViewChild('form') todoForm: NgForm;
   subscription: Subscription;
   editMode = false;
   editedTodoIndex: number;
@@ -39,8 +39,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   }
 
    onAddTodo(form: NgForm) {
-    const value = form.value;
-    const newTodo = new TodoModel(value.todomessage);
+    const newTodo = new TodoModel(form.value.todomessage);
     if (this.editMode) {
       this.todoService.updateTodo(this.editedTodoIndex, newTodo);
     } else {
@@ -48,6 +47,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     }
     this.todoForm.reset();
     form.reset();
+    console.log('Resetting form');
    }
 
    onClear() {
