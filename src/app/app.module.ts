@@ -22,6 +22,7 @@ import { LoginService } from './shared/service/login.service';
 import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
 import { TodoListService } from './shared/service/todo-list-service';
 import { AuthGuard } from './shared/service/auth-guard.service';
+import { GroupsComponent } from './main/groups/groups.component';
 
 
 
@@ -38,7 +39,8 @@ import { AuthGuard } from './shared/service/auth-guard.service';
     ContactsComponent,
     FooterComponent,
     ProfileComponent,
-    LoginComponent
+    LoginComponent,
+    GroupsComponent
   ],
   imports: [
     BrowserModule,

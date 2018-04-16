@@ -1,0 +1,17 @@
+
+<mat-card class="fill-window">
+  Her er alle dine grupper:
+</mat-card>
+
+<div class="row fill-window">
+  <div class="col-md-2">
+    <mat-list
+      *ngFor="let group of groups">
+      <mat-list-item><button mat-menu-item>{{ group.name }}</button></mat-list-item>
+    </mat-list>
+  </div>
+  <br>
+  <div class="col-md-10">
+    <app-todo></app-todo>
+  </div>
+</div>
