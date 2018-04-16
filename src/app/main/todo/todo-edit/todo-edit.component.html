@@ -1,7 +1,7 @@
 <div class="fill-window">
   <h3>Todo liste:</h3>
+  
   <mat-form-field>
-
   <form (ngSubmit)="onAddTodo(f)" #f="ngForm">
     <input type="text"
            id="todomessage"
@@ -18,7 +18,6 @@
     <button class="mat-button" type="button" (click)="onClear()">Ryd</button>
     <button class="mat-button" type="button" (click)="onDelete()" *ngIf="editMode">Slet</button>
   </mat-form-field>
-
 
 </div>
 

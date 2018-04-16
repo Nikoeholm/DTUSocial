@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {Credentials} from '../model/credentials.model';
+import { Credentials } from '../model/credentials.model';
 
 // Specify http header options here
 const httpOptions = {

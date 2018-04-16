@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit {
       (error) => console.log(error)
     );
     console.log(this.loginForm.get('userName').value);
-    this.router.navigate(['/container']);
+
+    // todo change path only if response is 200
   }
 
 }
