@@ -9,6 +9,8 @@ import {TodoListService} from '../../../shared/service/todo-list-service';
 import {TodoModel} from '../../../shared/model/todo-list.model';
 import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
+import index from '@angular/cli/lib/cli';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
   selector: 'app-todo-edit',
@@ -21,6 +23,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   editMode = false;
   editedTodoIndex: number;
   editedTodo: TodoModel;
+  private todo: TodoModel;
 
   constructor(private todoService: TodoListService) { }
 
@@ -48,6 +51,17 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     this.todoForm.reset();
     form.reset();
     console.log('Resetting form');
+
+    this.todoService.postTodo(this.todo).subscribe(
+      data => {
+        this.todoService.getTodoEndpoint();
+        return true;
+      },
+      error => {
+        console.error('Error in adding todo');
+        return Observable.throw(error);
+      }
+    );
    }
 
    onClear() {
