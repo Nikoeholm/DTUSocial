@@ -64,7 +64,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     //   }
     // );
 
-     this.dataStorageService.storeTodos()
+     this.todoService.postTodo(newTodo)
        .subscribe(
          (response: any) => {
            console.log(response);

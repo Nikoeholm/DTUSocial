@@ -3,6 +3,7 @@ import {EventEmitter, Injectable} from '@angular/core';
 import {TodoModel} from '../model/todo-list.model';
 import {Subject} from 'rxjs/Subject';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
 
 const httpOptions = {
   headers: new HttpHeaders({'content-type': 'application/json' })
@@ -28,8 +29,17 @@ export class TodoListService {
     // return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
     //   (res: Response) => res.json());
 
-    return this.http.post('http://localhost:8080/DTUSocial/todos', this.getTodos).map(
-      (res: Response) => res.json());
+    return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
+      (response: Response) => {
+        console.log(response);
+      }
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Something went wrong with todoserice');
+        }
+      );
   }
 
   getTodos() {
