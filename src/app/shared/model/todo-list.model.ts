@@ -1,3 +1,3 @@
 export class TodoModel {
-  constructor(public message: String) {}
+  constructor(public todoId: number, public userId: String, public message: String, public done: false) {}
 }

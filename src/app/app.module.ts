@@ -24,6 +24,7 @@ import { TodoListService } from './shared/service/todo-list-service';
 import { AuthGuard } from './shared/service/auth-guard.service';
 import { GroupsComponent } from './main/groups/groups.component';
 import {UsersService} from './shared/service/users.service';
+import {DataStorageService} from './shared/service/todo-storage.service';
 
 
 
@@ -49,9 +50,10 @@ import {UsersService} from './shared/service/users.service';
     RoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    HttpModule,
     FormsModule
   ],
-  providers: [AuthGuard, LoginService, TodoListService, UsersService],
+  providers: [AuthGuard, LoginService, TodoListService, UsersService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

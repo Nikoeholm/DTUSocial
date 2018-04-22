@@ -18,14 +18,17 @@ export class TodoListService {
   todosChanged = new EventEmitter<TodoModel[]>();
 
   todos: TodoModel[] = [
-    new TodoModel('Testbesked'),
-    new TodoModel('Test')
+    new TodoModel(1, 's165151', 'Testbesked', false),
+    new TodoModel(1, 's165151', 'Test', false)
   ];
 
 
   public postTodo(todo: TodoModel) {
     // reach to endpoint
-    return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
+    // return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
+    //   (res: Response) => res.json());
+
+    return this.http.post('http://localhost:8080/DTUSocial/todos', this.getTodos).map(
       (res: Response) => res.json());
   }
 

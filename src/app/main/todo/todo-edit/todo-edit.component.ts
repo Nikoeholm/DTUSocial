@@ -11,6 +11,7 @@ import {FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
 import { Subscription } from 'rxjs/Subscription';
 import index from '@angular/cli/lib/cli';
 import {Observable} from 'rxjs/Observable';
+import {DataStorageService} from '../../../shared/service/todo-storage.service';
 
 @Component({
   selector: 'app-todo-edit',
@@ -25,7 +26,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   editedTodo: TodoModel;
   private todo: TodoModel;
 
-  constructor(private todoService: TodoListService) { }
+  constructor(private todoService: TodoListService, private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.subscription = this.todoService.startedEditing
@@ -42,7 +43,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   }
 
    onAddTodo(form: NgForm) {
-    const newTodo = new TodoModel(form.value.todomessage);
+    const newTodo = new TodoModel(1, 's165151', form.value.todomessage, false);
     if (this.editMode) {
       this.todoService.updateTodo(this.editedTodoIndex, newTodo);
     } else {
@@ -51,18 +52,42 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     this.todoForm.reset();
     form.reset();
     console.log('Resetting form');
+    //
+    // this.todoService.postTodo(this.todo).subscribe(
+    //   data => {
+    //     this.todoService.getTodoEndpoint();
+    //     return true;
+    //   },
+    //   error => {
+    //     console.error('Error in adding todo');
+    //     return Observable.throw(error);
+    //   }
+    // );
 
-    this.todoService.postTodo(this.todo).subscribe(
-      data => {
-        this.todoService.getTodoEndpoint();
-        return true;
-      },
-      error => {
-        console.error('Error in adding todo');
-        return Observable.throw(error);
-      }
-    );
+     this.dataStorageService.storeTodos()
+       .subscribe(
+         (response: any) => {
+           console.log(response);
+         },
+         error => {
+           console.error('Error while adding todo');
+           return Observable.throw(error);
+         }
+       );
    }
+
+   // saveTodo() {
+   //   this.dataStorageService.storeTodos()
+   //     .subscribe(
+   //       (response: any) => {
+   //         console.log(response);
+   //       },
+   //       error => {
+   //         console.error('Error while adding todo');
+   //         return Observable.throw(error);
+   //       }
+   //     );
+   // }
 
    onClear() {
     this.todoForm.reset();
