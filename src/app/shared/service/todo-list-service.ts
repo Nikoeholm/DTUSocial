@@ -25,13 +25,9 @@ export class TodoListService {
 
 
   public postTodo(todo: TodoModel) {
-    // reach to endpoint
-    // return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
-    //   (res: Response) => res.json());
-
     return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
       (response: Response) => {
-        console.log(response);
+        console.log(response + 'TODO succesfully posted');
       }
     )
       .catch(
@@ -50,14 +46,7 @@ export class TodoListService {
     return this.todos[index];
   }
 
-  getTodoEndpoint() {
-    return this.http.get('http://localhost:8080/DTUSocial/todos').map((res: Response) => res.json());
-  }
-
   addTodo(todo: TodoModel) {
-    // if (!todo.id) {
-    //   todo.id = ++this.lastId;
-    // }
     this.todos.push(todo);
     this.todosChanged.next(this.todos.slice());
   }
