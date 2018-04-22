@@ -53,7 +53,11 @@ import {DataStorageService} from './shared/service/todo-storage.service';
     HttpModule,
     FormsModule
   ],
-  providers: [AuthGuard, LoginService, TodoListService, UsersService, DataStorageService],
+  providers: [AuthGuard,
+              LoginService,
+              TodoListService,
+              UsersService,
+              DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

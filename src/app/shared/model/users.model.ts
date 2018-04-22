@@ -1,4 +1,12 @@
 export class UsersModel {
-  constructor(public brugernavn: String, public fornavn: String, public efternavn: String) {}
+  constructor(
+          public brugernavn: String,
+          public email: String,
+          public sidstAktiv: String,
+          public campusnetId: String,
+          public studeretning: String,
+          public fornavn: String,
+          public efternavn: String,
+        ) {}
 
 }
