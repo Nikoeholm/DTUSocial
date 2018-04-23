@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './shared/service/login.service';
 import { UsersService } from './shared/service/users.service';
-import { UsersModel } from './shared/model/users.model';
+import { User } from './shared/model/user.model';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +9,10 @@ import { UsersModel } from './shared/model/users.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  users: UsersModel[];
+  users: User[];
   ngOnInit(): void {
     this.usersService.getUsers().subscribe(
-        (response) => console.log(response)
+        (response) => console.log('success')
     );
     // const user: UsersModel = this.usersService.getUser('s165162');
     // console.log(user);

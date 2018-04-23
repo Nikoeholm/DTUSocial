@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersModel} from '../../shared/model/users.model';
+import {User} from '../../shared/model/user.model';
 import {UsersService} from '../../shared/service/users.service';
 import {GroupsComponent} from '../groups/groups.component';
 
@@ -12,7 +12,7 @@ export class ContactsComponent implements OnInit {
 
   groups = new GroupsComponent();
 
-  persons: UsersModel[];
+  persons: User[];
 
   constructor(private usersService: UsersService) { }
 

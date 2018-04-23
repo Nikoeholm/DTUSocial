@@ -1,4 +1,4 @@
-export class UsersModel {
+export class User {
   constructor(
           public brugernavn: String,
           public email: String,

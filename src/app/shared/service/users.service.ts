@@ -1,4 +1,4 @@
-import { UsersModel } from '../model/users.model';
+import { User } from '../model/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
@@ -14,17 +14,17 @@ const httpOptions = {
 @Injectable()
 export class UsersService {
 
-  users: UsersModel[];
-
   constructor(private http: HttpClient, router: Router) {}
 
+  users: User[];
   getUsers() {
     // Reach REST endpoint
-    return this.http.get('http://localhost:8080/DTUSocial/users/', httpOptions).map(
-      (data: Response) => {
-        console.log(data);
-        const user = data['0'];
-        console.log(user);
+    return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
+      (users) => {
+        for (const user of users) {
+            users.push(user);
+            return console.log(users);
+        }
       }
     )
       .catch(
