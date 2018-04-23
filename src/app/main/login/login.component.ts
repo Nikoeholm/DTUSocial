@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Credentials} from '../../shared/model/credentials.model';
 import { LoginService } from '../../shared/service/login.service';
@@ -10,11 +10,8 @@ import {Router} from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
-
-  loginForm: FormGroup;
-
-  isLoggedin = false;
+export class LoginComponent implements OnInit, OnDestroy {
+   loginForm: FormGroup;
 
   private credentials: Credentials;
 
@@ -44,6 +41,10 @@ export class LoginComponent implements OnInit {
     console.log(this.loginForm.get('userName').value);
 
     // todo change path only if response is 200
+  }
+
+  ngOnDestroy(): void {
+   this.router.navigate(['/home']);
   }
 
 }
