@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoListService} from '../../shared/service/todo-list-service';
-import {TodoModel} from '../../shared/model/todo-list.model';
+import {Todo} from '../../shared/model/todo-list.model';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-todo',
@@ -8,13 +9,13 @@ import {TodoModel} from '../../shared/model/todo-list.model';
   styleUrls: ['./todo-list.component.css'],
 })
 export class TodoListComponent implements OnInit {
-  todos: TodoModel[];
+  todos: Todo[];
 
   constructor(private todoService: TodoListService) { }
 
   ngOnInit() {
     this.todos = this.todoService.getTodos();
-    this.todoService.todosChanged.subscribe((todos: TodoModel[]) => {
+    this.todoService.todosChanged.subscribe((todos: Todo[]) => {
         this.todos = todos;
       }
     );

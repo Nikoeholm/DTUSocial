@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import {TodoListService} from '../../../shared/service/todo-list-service';
-import {TodoModel} from '../../../shared/model/todo-list.model';
+import {Todo} from '../../../shared/model/todo-list.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
@@ -20,7 +20,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   editMode = false;
   editedTodoIndex: number;
-  editedTodo: TodoModel;
+  editedTodo: Todo;
 
   constructor(private todoService: TodoListService) {
   }
@@ -40,7 +40,9 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   }
 
   onAddTodo(form: NgForm) {
-    const newTodo = new TodoModel(1, 's165151', form.value.todomessage, false);
+    this.todoService.getTodos();
+    console.log('onAddTodo: Todo added');
+    const newTodo = new Todo(1, 's165151', form.value.todomessage, false);
     if (this.editMode) {
       this.todoService.updateTodo(this.editedTodoIndex, newTodo);
     } else {

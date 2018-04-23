@@ -16,7 +16,6 @@ import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './main/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
 import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
@@ -49,7 +48,6 @@ import {UsersService} from './shared/service/users.service';
     RoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    HttpModule,
     FormsModule
   ],
   providers: [AuthGuard, LoginService, TodoListService, UsersService],
