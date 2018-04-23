@@ -9,7 +9,7 @@ import { Credentials } from '../model/credentials.model';
 // Specify http header options here
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json'
+    'Content-Type':  'application/json',
   })
 };
 @Injectable()
@@ -25,6 +25,7 @@ export class LoginService {
     .map(
       (response: Response) => {
         this.token = response.toString();
+        // console.log(response.headers.get('Authorisation'));
         // Save the token in Localstorage of browser
         // Run command in console, to check if token is saved: localStorage;
         window.localStorage.setItem('access_token', this.token);
