@@ -52,13 +52,11 @@ export class TodoEditComponent implements OnInit, OnDestroy {
 
     this.todoService.postTodo(newTodo)
       .subscribe(
-        (response: any) => {
-          console.log(response);
-        },
-        error => {
-          console.error('Error while adding todo');
-          return Observable.throw(error);
-        }
+        (response) =>
+          console.log(response),
+        (error) =>
+          console.error('Error while adding todo')
+
       );
   }
 

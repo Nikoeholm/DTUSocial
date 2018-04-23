@@ -24,22 +24,38 @@ export class TodoListService {
   ];
 
 
-  public postTodo(todo: TodoModel) {
-    return this.http.post('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
+  postTodo(todo: TodoModel) {
+    return this.http.put('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
       (response: Response) => {
-        console.log(response + 'TODO succesfully posted');
+        console.log(response);
       }
     )
       .catch(
         (error: Response) => {
           console.log(error);
-          return Observable.throw('Something went wrong with todoserice');
+          return Observable.throw('Something went wrong with todo-service');
         }
+      );
+  }
+
+  getTodosBackEnd() {
+    this.http.get('http://localhost:8080/DTUSocial/todos')
+      .subscribe(
+        (response: any) => {
+      const todos: TodoModel[] = response.json();
+      this.setTodos(todos);
+    }
       );
   }
 
   getTodos() {
     return this.todos.slice();
+  }
+
+  setTodos(todos: TodoModel[]) {
+    // replace excisting todos with new todos and passes a copy with slice
+    this.todos = todos;
+    this.todosChanged.next(this.todos.slice());
   }
 
   getTodo(index: number) {
