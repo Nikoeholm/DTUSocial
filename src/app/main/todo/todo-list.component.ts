@@ -14,6 +14,12 @@ export class TodoListComponent implements OnInit {
   constructor(private todoService: TodoListService) { }
 
   ngOnInit() {
+ // Retrieve TODOS from backend
+
+    this.todoService.getTodosBackEnd().subscribe(
+      (response) => console.log('Todos loaded from backend')
+    );
+
     this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: Todo[]) => {
         this.todos = todos;

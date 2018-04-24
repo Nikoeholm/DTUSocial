@@ -13,6 +13,8 @@ const httpOptions = {
 @Injectable()
 export class TodoListService {
 
+  todoId = 1;
+
   constructor(private http: HttpClient) {}
 
   // Subject which can be listen to in other componentes
@@ -20,12 +22,7 @@ export class TodoListService {
   todosChanged = new EventEmitter<Todo[]>();
 
   // todos: Todo[];
-
-  todos: Todo[] = [
-    new Todo(1, 's165151', 'Testbesked', false),
-    new Todo(1, 's165151', 'Test', false)
-  ];
-
+  todos: Todo[];
 
   putTodo(todo: Todo) {
     return this.http.put('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
@@ -45,10 +42,8 @@ export class TodoListService {
       // Reach REST endpoint
       return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/todos/', httpOptions).map(
         (todos) => {
-          for (const todo of todos) {
-            todos.push(todo);
+            this.setTodos(todos);
             return console.log(todos);
-          }
         }
       )
         .catch(
@@ -60,8 +55,22 @@ export class TodoListService {
 
   }
 
+  deleteTodoBackend(todoId: number) {
+    return this.http.delete('http://localhost:8080/DTUSocial/todos/' + todoId, httpOptions).map(
+        (response: Response) => {
+            return console.log(response);
+        }
+      )
+        .catch(
+          (error: Response) => {
+            console.log(error);
+            return Observable.throw('Something went wrong in TodoService: DELETE TODO');
+          }
+        );
+  }
+
   getTodos() {
-    return this.todos.slice();
+    return this.todos;
   }
 
   setTodos(todos: Todo[]) {
@@ -82,11 +91,18 @@ export class TodoListService {
   }
 
   updateTodo(index: number, newTodo: Todo) {
+    // TODO: Update from backend using id and studynr
     this.todos[index] = newTodo;
     this.todosChanged.next(this.todos.slice());
   }
 
   deleteTodo(index: number) {
+    // TODO: Delete from backend using id and studynr
+    this.deleteTodoBackend(this.todos[index].todoId).subscribe(
+      (response) => console.log('Todo removed from backend'),
+      (error) => console.error('Todo couldn\'t be removed')
+    );
+
     this.todos.splice(index, 1);
     this.todosChanged.next(this.todos.slice());
   }

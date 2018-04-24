@@ -12,10 +12,6 @@ import { User } from './shared/model/user.model';
 export class AppComponent implements OnInit {
   users: User[];
   ngOnInit() {
-
-    this.todoService.getTodosBackEnd().subscribe((response) => console.log('Todos loaded')
-    );
-
     this.usersService.getUsers().subscribe(
         (response) => console.log('users loaded')
     );
