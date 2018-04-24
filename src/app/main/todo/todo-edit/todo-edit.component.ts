@@ -60,7 +60,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
         (response) => {
           console.log(response);
           this.todoService.getTodosBackEnd().subscribe(
-            (response) => console.log('Todos loaded from backend')
+            (todos) => console.log('Todos loaded from backend')
           );
         },
         // TODO: Show error on Template
