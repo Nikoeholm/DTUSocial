@@ -55,6 +55,22 @@ export class TodoListService {
 
   }
 
+
+  patchTodoBackend(todo: Todo) {
+    return this.http.patch('http://localhost:8080/DTUSocial/todos/' + todo.todoId,  JSON.stringify(todo), httpOptions).map(
+      (response: Response) => {
+        return console.log(response);
+    }
+  )
+    .catch(
+      (error: Response) => {
+        console.log(error);
+        return Observable.throw('Something went wrong in TodoService: PATCH TODO');
+      }
+    );
+  }
+
+
   deleteTodoBackend(todoId: number) {
     return this.http.delete('http://localhost:8080/DTUSocial/todos/' + todoId, httpOptions).map(
         (response: Response) => {
@@ -90,9 +106,13 @@ export class TodoListService {
     this.todosChanged.next(this.todos.slice());
   }
 
-  updateTodo(index: number, newTodo: Todo) {
+  updateTodo(index: number, updateTodo: Todo) {
     // TODO: Update from backend using id and studynr
-    this.todos[index] = newTodo;
+    this.patchTodoBackend(updateTodo).subscribe(
+      (response) => console.log('Todo updated on backend'),
+      (error) => console.error('Something went wrong while updating todo!')
+    );
+    this.todos[index] = updateTodo;
     this.todosChanged.next(this.todos.slice());
   }
 

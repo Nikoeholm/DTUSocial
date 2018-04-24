@@ -48,15 +48,12 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     // TODO: Get the correct userId and generete todoId
     const newTodo = new Todo(1, 's165151', form.value.todomessage, false);
     if (this.editMode) {
-      this.todoService.updateTodo(this.editedTodoIndex, newTodo);
+      // Get updated message from template
+      this.editedTodo.message = form.value.todomessage;
+      // Update todo
+      this.todoService.updateTodo(this.editedTodoIndex, this.editedTodo);
     } else {
-      this.todoService.addTodo(newTodo);
-    }
-    this.todoForm.reset();
-    form.reset();
-    console.log('TodoEditComponent: Resetting form');
-
-    this.todoService.putTodo(newTodo).subscribe(
+      this.todoService.putTodo(newTodo).subscribe(
         (response) => {
           console.log(response);
           this.todoService.getTodosBackEnd().subscribe(
@@ -65,8 +62,12 @@ export class TodoEditComponent implements OnInit, OnDestroy {
         },
         // TODO: Show error on Template
         (error) => console.error('Error while adding todo')
-
       );
+      this.todoService.addTodo(newTodo);
+    }
+    this.todoForm.reset();
+    form.reset();
+    console.log('TodoEditComponent: Resetting form');
 
   }
 
