@@ -27,7 +27,7 @@ export class TodoListService {
   ];
 
 
-  postTodo(todo: Todo) {
+  putTodo(todo: Todo) {
     return this.http.put('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
       (response: Response) => {
         console.log(response);

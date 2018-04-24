@@ -26,6 +26,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // Event listener
     this.subscription = this.todoService.startedEditing
       .subscribe(
         (index: number) => {
@@ -42,6 +43,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   onAddTodo(form: NgForm) {
     this.todoService.getTodos();
     console.log('onAddTodo: Todo added');
+    // TODO: Get the correct userId and generete todoId
     const newTodo = new Todo(1, 's165151', form.value.todomessage, false);
     if (this.editMode) {
       this.todoService.updateTodo(this.editedTodoIndex, newTodo);
@@ -50,14 +52,12 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     }
     this.todoForm.reset();
     form.reset();
-    console.log('Resetting form');
+    console.log('TodoEditComponent: Resetting form');
 
-    this.todoService.postTodo(newTodo)
-      .subscribe(
-        (response) =>
-          console.log(response),
-        (error) =>
-          console.error('Error while adding todo')
+    this.todoService.putTodo(newTodo).subscribe(
+        (response) => console.log(response),
+        // TODO: Show error on Template
+        (error) => console.error('Error while adding todo')
 
       );
   }

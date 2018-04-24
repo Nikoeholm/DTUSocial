@@ -19,12 +19,17 @@ export class UsersService {
   users: User[];
   getUsers() {
     // Reach REST endpoint
-    return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
+    return this.http.get('http://localhost:8080/DTUSocial/users/', {
+      observe: 'response',
+      responseType: 'json'
+    }).map(
       (users) => {
-        for (const user of users) {
+        console.log(users);
+        /* for (const user of users) {
             users.push(user);
             return console.log(users);
-        }
+        } */
+        return [];
       }
     )
       .catch(
