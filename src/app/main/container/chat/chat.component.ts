@@ -1,5 +1,5 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription } from 'rxjs/Subscription';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
 import { ChatService } from '../../../shared/service/chat.service';
@@ -15,9 +15,9 @@ import { UserService } from '../../../shared/service/user.service';
 export class ChatComponent implements OnInit {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
-  chatter: User;
   message: Message;
-  messages = [];
+  chat: Message[];
+  chatter: User;
 
   constructor(private usersService: UsersService,
               private chatService: ChatService,
@@ -28,6 +28,18 @@ export class ChatComponent implements OnInit {
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
         console.log('Chatter: ' + this.chatter.brugernavn);
+        // Load chat
+        this.retreiveChat();
+      }
+    );
+  }
+
+  retreiveChat() {
+    this.chatService.retrieveChat(this.chatter.brugernavn).subscribe(
+      (messages) => {
+        console.log('Messages retrieved from backed');
+        console.log(messages.message);
+        this.chat = messages;
       }
     );
   }
@@ -35,12 +47,12 @@ export class ChatComponent implements OnInit {
   onSendMessage() {
     const username = window.localStorage.getItem('username');
     const currentMessage = this.messageInputRef.nativeElement.value;
-    this.message = new Message(currentMessage, username, this.chatter.brugernavn, new Date());
+    this.message = new Message(currentMessage, username, this.chatter.brugernavn);
     this.chatService.sendMessage(this.message).subscribe(
       (response) => console.log('Message sent'),
       (error) => console.error('Message couldn\'t be sent!')
     );
-    this.messages.push(currentMessage);
+    this.chat.push(currentMessage);
     this.messageInputRef.nativeElement.value = '';
 
 }
