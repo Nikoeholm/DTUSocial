@@ -17,6 +17,12 @@ export class ContactsComponent implements OnInit {
   constructor(private usersService: UsersService) { }
 
   ngOnInit() {
+
+    this.usersService.getUsers().subscribe(
+      (response) => console.log('users loaded')
+    );
+
+    console.log('User loaded is: ' + this.usersService.getUser().brugernavn);
     // this.usersService.getUsers().subscribe(
     //   (response) => console.log(response),
     //   (error) => console.log(error)

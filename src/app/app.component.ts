@@ -10,11 +10,8 @@ import { User } from './shared/model/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  users: User[];
+
   ngOnInit() {
-    this.usersService.getUsers().subscribe(
-        (response) => console.log('users loaded')
-    );
     // const user: UsersModel = this.usersService.getUser('s165162');
     // console.log(user);
     try {
@@ -24,6 +21,6 @@ export class AppComponent implements OnInit {
       throw new Error('Token couldn\'t be resolved');
     }
   }
-  constructor(private loginService: LoginService, private usersService: UsersService, private todoService: TodoListService) {
+  constructor(private loginService: LoginService) {
   }
 }
