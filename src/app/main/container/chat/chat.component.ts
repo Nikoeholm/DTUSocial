@@ -18,6 +18,7 @@ export class ChatComponent implements OnInit {
   message: Message;
   chat: Message[];
   chatter: User;
+  isChatLoaded = false;
 
   constructor(private usersService: UsersService,
               private chatService: ChatService,
@@ -28,6 +29,7 @@ export class ChatComponent implements OnInit {
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
         console.log('Chatter: ' + this.chatter.brugernavn);
+        this.isChatLoaded = true;
         // Load chat
         this.retreiveChat();
       }
