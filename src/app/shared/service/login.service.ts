@@ -29,6 +29,7 @@ export class LoginService {
         // Save the token in Localstorage of browser
         // Run command in console, to check if token is saved: localStorage;
         window.localStorage.setItem('access_token', this.token);
+        window.localStorage.setItem('user', credentials.username);
         return this.token;
       }
     )
@@ -47,6 +48,7 @@ export class LoginService {
   logout() {
     // window.localStorage.clear();
     window.localStorage.removeItem('access_token');
+    window.localStorage.removeItem('user');
     this.token = null;
   }
 

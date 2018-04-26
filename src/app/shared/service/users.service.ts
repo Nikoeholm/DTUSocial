@@ -14,22 +14,16 @@ const httpOptions = {
 @Injectable()
 export class UsersService {
 
+  users: User[];
+
   constructor(private http: HttpClient, router: Router) {}
 
-  users: User[];
   getUsers() {
     // Reach REST endpoint
-    return this.http.get('http://localhost:8080/DTUSocial/users/', {
-      observe: 'response',
-      responseType: 'json'
-    }).map(
+    return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
       (users) => {
+        this.users = users;
         console.log(users);
-        /* for (const user of users) {
-            users.push(user);
-            return console.log(users);
-        } */
-        return [];
       }
     )
       .catch(
@@ -40,9 +34,10 @@ export class UsersService {
       );
   }
 
-  getUser(studentId: string) {
-    return this.users.find( user => user.brugernavn === studentId);
-
+  // This will return the whole user object
+  getUser() {
+    const username = window.localStorage.getItem('user');
+    return this.users.find( user => user.brugernavn === username);
   }
 }
 

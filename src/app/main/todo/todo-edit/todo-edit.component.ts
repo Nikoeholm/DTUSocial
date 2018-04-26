@@ -46,7 +46,8 @@ export class TodoEditComponent implements OnInit, OnDestroy {
     this.todoService.getTodos();
     console.log('onAddTodo: Todo added');
     // TODO: Get the correct userId and generete todoId
-    const newTodo = new Todo(1, 's165151', form.value.todomessage, false);
+    const username = window.localStorage.getItem('user');
+    const newTodo = new Todo(1, username, form.value.todomessage, false);
     if (this.editMode) {
       // Get updated message from template
       this.editedTodo.message = form.value.todomessage;
