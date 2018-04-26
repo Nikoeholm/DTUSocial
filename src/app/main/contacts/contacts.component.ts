@@ -13,17 +13,19 @@ export class ContactsComponent implements OnInit {
 
   groups = new GroupsComponent();
 
-  persons: User[];
+  users: User[];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+              private usersService: UsersService) { }
 
   ngOnInit() {
-
-    
-    // this.usersService.getUsers().subscribe(
-    //   (response) => console.log(response),
-    //   (error) => console.log(error)
-    // );
+    try {
+      this.usersService.retrieveUsers().subscribe(
+        (users) => this.users = this.usersService.getUsers()
+      );
+    } catch (e) {
+      throw new Error('Users couldn\'t be resolved');
+    }
   }
 
 }

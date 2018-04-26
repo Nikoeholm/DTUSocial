@@ -16,9 +16,13 @@ export class UsersService {
 
   users: User[];
 
+  getUsers() {
+    return this.users.slice();
+  }
+
   constructor(private http: HttpClient, router: Router) {}
 
-  getUsers() {
+  retrieveUsers() {
     // Reach REST endpoint
     return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
       (users) => {

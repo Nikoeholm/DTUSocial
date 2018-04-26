@@ -13,18 +13,12 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     try {
-      this.usersService.getUsers().subscribe();
-    } catch (e) {
-      throw new Error('Users couldn\'t be resolved');
-    }
-    try {
       const token = window.localStorage.getItem('access_token');
       this.loginService.setTokenFromLocalStorage(token);
     } catch (e) {
       throw new Error('Token couldn\'t be resolved');
     }
   }
-  constructor(private loginService: LoginService,
-    private usersService: UsersService) {
+  constructor(private loginService: LoginService) {
   }
 }
