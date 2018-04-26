@@ -16,7 +16,7 @@ import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
 import { LoginComponent } from './main/login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
 import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
 import { TodoService } from './shared/service/todo.service';
@@ -24,6 +24,8 @@ import { AuthGuard } from './shared/service/auth-guard.service';
 import { GroupsComponent } from './main/groups/groups.component';
 import {UsersService} from './shared/service/users.service';
 import { UserService } from './shared/service/user.service';
+import { DTUSocialAuthInterceptor } from './shared/DTUSocialAuthInterceptor';
+import { DataService } from './shared/APIService';
 
 
 
@@ -56,7 +58,14 @@ import { UserService } from './shared/service/user.service';
     LoginService,
     TodoService,
     UsersService,
-    UserService],
+    UserService,
+    DataService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: DTUSocialAuthInterceptor,
+      multi: true
+    }
+   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

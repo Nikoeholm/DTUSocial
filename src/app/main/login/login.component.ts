@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.credentials = new Credentials(this.loginForm.get('userName').value, this.loginForm.get('passWord').value);
 
     this.loginService.postCredentials(this.credentials).subscribe(
-      (response) => console.log(response),
+      (response) => console.log('Successfully logged in.'),
       (error) => console.log(error)
     );
 

@@ -58,7 +58,10 @@ export class LoginService {
   }
 
   getToken() {
-    return this.token;
+    if (this.token != null) {
+      return this.token;
+    }
+    return '';
   }
 
   isAuthenticated() {
