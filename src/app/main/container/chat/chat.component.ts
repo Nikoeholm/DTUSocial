@@ -34,12 +34,15 @@ export class ChatComponent implements OnInit {
     );
   }
 
+  setChat(chat: Message[]) {
+    this.chat = chat;
+  }
+
   retreiveChat() {
     this.chatService.retrieveChat(this.chatter.brugernavn).subscribe(
       (messages) => {
-        console.log('Messages retrieved from backed');
-        console.log(messages.message);
-        this.chat = messages;
+        console.log('Messages retrieved from backend');
+        this.setChat(this.chatService.getChat());
       }
     );
   }
@@ -47,12 +50,15 @@ export class ChatComponent implements OnInit {
   onSendMessage() {
     const username = window.localStorage.getItem('username');
     const currentMessage = this.messageInputRef.nativeElement.value;
-    this.message = new Message(currentMessage, username, this.chatter.brugernavn);
+    this.message = new Message(currentMessage,
+                                username,
+                                this.chatter.brugernavn,
+                                0);
     this.chatService.sendMessage(this.message).subscribe(
       (response) => console.log('Message sent'),
       (error) => console.error('Message couldn\'t be sent!')
     );
-    this.chat.push(currentMessage);
+    this.chat.push(this.message);
     this.messageInputRef.nativeElement.value = '';
 
 }

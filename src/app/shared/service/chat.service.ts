@@ -17,6 +17,10 @@ export class ChatService {
 
   chat: Message[];
 
+  getChat() {
+    return this.chat.slice();
+  }
+
   sendMessage(message: Message) {
     return this.http.put('http://localhost:8080/DTUSocial/chat/personal', JSON.stringify(message), httpOptions)
       .map(
@@ -33,12 +37,12 @@ export class ChatService {
   }
 
   retrieveChat(chatterId: String) {
-    const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
-    return this.http.post<Message[]>('http://localhost:8080/DTUSocial/chat/personal', chatter, httpOptions)
+    // const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
+    return this.http.get<Message[]>('http://localhost:8080/DTUSocial/chat/personal/' + chatterId, httpOptions)
       .map(
-        (message) => {
-          console.log(message);
-          this.chat = message;
+        (messages) => {
+          console.log(messages);
+          this.chat = messages;
         }
       )
       .catch(

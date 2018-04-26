@@ -18,14 +18,11 @@
   </div>
 -->
 
-  <ng-template  *ngFor="let message of messages; let i = index">
-    <p>{{ message.message }}</p>
-  </ng-template>
   <div *ngFor="let message of chat">
-    <div class="container">
+    <div class="container darker">
       <img src="/assets/blank-profile.png" alt="Avatar" class="right">
-      <p class="text-style">{{ message.message | async }}</p>
-      <span class="time-left">message.userId</span>
+      <p class="text-style">{{ message.message }}</p>
+      <span class="time-left">{{ message.time }}</span>
     </div>
   </div>
 </div>
