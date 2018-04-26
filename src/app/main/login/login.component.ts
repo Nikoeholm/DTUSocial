@@ -29,16 +29,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    console.log(this.loginForm.get('userName').value);
-    console.log(this.loginForm.get('passWord').value);
-
     this.credentials = new Credentials(this.loginForm.get('userName').value, this.loginForm.get('passWord').value);
 
     this.loginService.postCredentials(this.credentials).subscribe(
       (response) => console.log(response),
       (error) => console.log(error)
     );
-    console.log(this.loginForm.get('userName').value);
 
     // todo change path only if response is 200
   }

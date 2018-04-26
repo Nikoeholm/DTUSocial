@@ -23,7 +23,6 @@ export class UsersService {
     return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
       (users) => {
         this.users = users;
-        console.log(users);
       }
     )
       .catch(

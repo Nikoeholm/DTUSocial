@@ -4,7 +4,7 @@ import {
   ViewChild, OnDestroy
 } from '@angular/core';
 
-import {TodoListService} from '../../../shared/service/todo-list-service';
+import {TodoService} from '../../../shared/service/todo.service';
 import {Todo} from '../../../shared/model/todo-list.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
@@ -22,7 +22,7 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   editedTodoIndex: number;
   editedTodo: Todo;
 
-  constructor(private todoService: TodoListService) {
+  constructor(private todoService: TodoService) {
   }
 
   ngOnInit() {

@@ -11,9 +11,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class TodoListService {
-
-  todoId = 1;
+export class TodoService {
 
   constructor(private http: HttpClient) {}
 

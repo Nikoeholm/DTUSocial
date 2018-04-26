@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {TodoListService} from '../../shared/service/todo-list-service';
+import {TodoService} from '../../shared/service/todo.service';
 import {Todo} from '../../shared/model/todo-list.model';
 import {Subscription} from 'rxjs/Subscription';
 
@@ -11,7 +11,7 @@ import {Subscription} from 'rxjs/Subscription';
 export class TodoListComponent implements OnInit {
   todos: Todo[];
 
-  constructor(private todoService: TodoListService) { }
+  constructor(private todoService: TodoService) { }
 
   ngOnInit() {
       // Retrieve TODOS from backend

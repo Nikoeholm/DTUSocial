@@ -19,10 +19,11 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
 import { TodoEditComponent } from './main/todo/todo-edit/todo-edit.component';
-import { TodoListService } from './shared/service/todo-list-service';
+import { TodoService } from './shared/service/todo.service';
 import { AuthGuard } from './shared/service/auth-guard.service';
 import { GroupsComponent } from './main/groups/groups.component';
 import {UsersService} from './shared/service/users.service';
+import { UserService } from './shared/service/user.service';
 
 
 
@@ -50,7 +51,12 @@ import {UsersService} from './shared/service/users.service';
     HttpClientModule,
     FormsModule
   ],
-  providers: [AuthGuard, LoginService, TodoListService, UsersService],
+  providers: [
+    AuthGuard,
+    LoginService,
+    TodoService,
+    UsersService,
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

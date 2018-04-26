@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Credentials } from '../model/credentials.model';
+import { UserService } from './user.service';
 
 // Specify http header options here
 const httpOptions = {
@@ -17,7 +18,9 @@ export class LoginService {
 
   token: string;
 
-  constructor(private http: HttpClient, router: Router) {}
+  constructor(private http: HttpClient,
+              private router: Router,
+              private userService: UserService) {}
 
   public postCredentials(credentials: Credentials) {
     // Reach to rest-endpoint
@@ -30,6 +33,8 @@ export class LoginService {
         // Run command in console, to check if token is saved: localStorage;
         window.localStorage.setItem('access_token', this.token);
         window.localStorage.setItem('user', credentials.username);
+
+        this.userService.retrieveUser(credentials.username).subscribe();
         return this.token;
       }
     )

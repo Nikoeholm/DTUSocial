@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../shared/model/user.model';
 import {UsersService} from '../../shared/service/users.service';
 import {GroupsComponent} from '../groups/groups.component';
+import { UserService } from '../../shared/service/user.service';
 
 @Component({
   selector: 'app-contacts',
@@ -14,15 +15,11 @@ export class ContactsComponent implements OnInit {
 
   persons: User[];
 
-  constructor(private usersService: UsersService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
 
-    this.usersService.getUsers().subscribe(
-      (response) => console.log('users loaded')
-    );
-
-    console.log('User loaded is: ' + this.usersService.getUser().brugernavn);
+    
     // this.usersService.getUsers().subscribe(
     //   (response) => console.log(response),
     //   (error) => console.log(error)
