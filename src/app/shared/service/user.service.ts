@@ -29,6 +29,7 @@ export class UserService {
         return this.http.get<User>('http://localhost:8080/DTUSocial/users/' + username, httpOptions).map(
       (user) => {
           console.log(user);
+          console.log('User is set!');
           this.setUser(user);
       }
     )

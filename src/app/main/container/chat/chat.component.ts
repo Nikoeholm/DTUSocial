@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
 import { ChatService } from '../../../shared/service/chat.service';
+import { Message } from '../../../shared/model/message.model';
+import { UserService } from '../../../shared/service/user.service';
 
 @Component({
   selector: 'app-chat',
@@ -14,10 +16,12 @@ export class ChatComponent implements OnInit {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
   chatter: User;
+  message: Message;
   messages = [];
 
   constructor(private usersService: UsersService,
-              private chatService: ChatService) { }
+              private chatService: ChatService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
@@ -29,8 +33,14 @@ export class ChatComponent implements OnInit {
   }
 
   onSendMessage() {
-    const message = this.messageInputRef.nativeElement.value;
-    this.messages.push(message);
+    const username = window.localStorage.getItem('username');
+    const currentMessage = this.messageInputRef.nativeElement.value;
+    this.message = new Message(currentMessage, username, this.chatter.brugernavn, new Date());
+    this.chatService.sendMessage(this.message).subscribe(
+      (response) => console.log('Message sent'),
+      (error) => console.error('Message couldn\'t be sent!')
+    );
+    this.messages.push(currentMessage);
     this.messageInputRef.nativeElement.value = '';
 
 }
