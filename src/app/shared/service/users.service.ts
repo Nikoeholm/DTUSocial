@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 // Specify http header options here
 const httpOptions = {
@@ -13,8 +14,8 @@ const httpOptions = {
 };
 @Injectable()
 export class UsersService {
-
   users: User[];
+  startPersonalConversation = new Subject<number>();
 
   getUsers() {
     return this.users.slice();
@@ -38,9 +39,12 @@ export class UsersService {
   }
 
   // This will return the whole user object
-  getUser() {
-    const username = window.localStorage.getItem('user');
+  getUserById(username: string) {
     return this.users.find( user => user.brugernavn === username);
+  }
+
+  getUser(index: number) {
+    return this.users[index];
   }
 }
 
