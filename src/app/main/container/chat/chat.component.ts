@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
@@ -12,7 +12,7 @@ import { UserService } from '../../../shared/service/user.service';
   styleUrls: ['./chat.component.css'],
   providers: [ChatService]
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
   message: Message;
@@ -24,6 +24,10 @@ export class ChatComponent implements OnInit {
   constructor(private usersService: UsersService,
               private chatService: ChatService,
               private userService: UserService) { }
+
+  ngOnDestroy(): void {
+    this.onPersonalConversationSubs.unsubscribe();
+  }
 
   ngOnInit() {
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
@@ -38,6 +42,7 @@ export class ChatComponent implements OnInit {
 
   setChat(chat: Message[]) {
     if (chat.length === 0) {
+      this.chat = null;
       this.hasChat = false;
       return;
     } else {
