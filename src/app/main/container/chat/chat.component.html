@@ -24,7 +24,7 @@
   <p>You havn't chatted with yet!</p>
 </ng-template>
 <ng-template [ngIf]="hasChat">
-  <div *ngFor="let message of chat">
+  <div [ngFor]="let message of chat">
     <div
     class="container"
     [ngClass]="{'darker':message.interactorId !== 's165162'}">

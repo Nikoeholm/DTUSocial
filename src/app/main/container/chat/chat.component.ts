@@ -31,7 +31,6 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    
     this.username = window.localStorage.getItem('username');
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
