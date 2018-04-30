@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
   message: Message;
-  chat: Message[];
+  chat: Message[] = [];
   chatter: User;
   hasChat: boolean;
   time: Date[];
@@ -31,6 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    
     this.username = window.localStorage.getItem('username');
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
@@ -44,7 +45,6 @@ export class ChatComponent implements OnInit, OnDestroy {
 
   setChat(chat: Message[]) {
     if (chat.length === 0) {
-      this.chat = null;
       this.hasChat = false;
       return;
     } else {
