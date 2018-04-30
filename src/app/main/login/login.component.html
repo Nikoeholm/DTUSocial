@@ -10,6 +10,10 @@
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>-->
+      <div class="alert alert-danger"
+        *ngIf="!auth">
+        Brugernavn og password matcher ikke.
+      </div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <input type="text"
              id="userName"
@@ -40,4 +44,5 @@
     </form>
   </div>
 </div>
+
 
