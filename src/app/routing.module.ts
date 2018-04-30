@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     { path: 'todo', component: TodoListComponent, canActivate: [AuthGuard]},
     { path: 'home', component: ContainerComponent,
       canActivateChild: [AuthGuard], children: [
-        { path: 'group/:id', component: ChatComponent },
+        { path: 'group/:id', component: ChatComponent},
         { path: 'personal/:id', component: ChatComponent }
       ]
     },
