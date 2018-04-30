@@ -124,4 +124,38 @@ export class TodoService {
     this.todos.splice(index, 1);
     this.todosChanged.next(this.todos.slice());
   }
+
+
+  getPersonalTodos(id: string) {
+     // Reach REST endpoint
+     return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/todos/personal/' + id, httpOptions).map(
+      (todos) => {
+          this.setTodos(todos);
+          return console.log(todos);
+      }
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('TodoService: Couldn\'t get personal todos');
+        }
+      );
+
+  }
+
+  putPersonalTodo(id: string, todo: Todo) {
+    // Reach REST endpoint
+    return this.http.put('http://localhost:8080/DTUSocial/todos/personal/' + id, JSON.stringify(todo), httpOptions).map(
+      (response: Response) => {
+        console.log(response);
+      }
+   )
+     .catch(
+       (error: Response) => {
+         console.log(error);
+         return Observable.throw('TodoService: Couldn\'t put personal todos');
+       }
+     );
+
+ }
 }

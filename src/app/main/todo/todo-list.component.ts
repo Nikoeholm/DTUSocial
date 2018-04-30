@@ -22,13 +22,15 @@ export class TodoListComponent implements OnInit {
     this.onPersonalTodoSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
-        console.log('Todo Chatter: ' + this.chatter.brugernavn);
       }
     );
+
+    if (this.chatter == null) {
       // Retrieve TODOS from backend
       this.todoService.getTodosBackEnd().subscribe(
         (response) => console.log('Todos loaded from backend')
        );
+      }
 
     this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: Todo[]) => {

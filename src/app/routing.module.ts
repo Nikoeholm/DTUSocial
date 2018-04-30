@@ -12,9 +12,12 @@ import {GroupsComponent} from './main/groups/groups.component';
 const appRoutes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'todo', component: TodoListComponent, canActivate: [AuthGuard]},
-    { path: 'home', component: ContainerComponent, canActivateChild: [AuthGuard], children: [
-      { path: 'group/:id', component: ChatComponent },
-      { path: 'personal/:id', component: ChatComponent }]},
+    { path: 'home', component: ContainerComponent,
+      canActivateChild: [AuthGuard], children: [
+        { path: 'group/:id', component: ChatComponent },
+        { path: 'personal/:id', component: ChatComponent }
+      ]
+    },
     { path: 'groups', component: GroupsComponent, canActivate: [AuthGuard]},
     { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
 
