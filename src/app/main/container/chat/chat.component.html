@@ -17,14 +17,19 @@
     <span class="time-right">11:02</span>
   </div>
 -->
-
-  <div *ngFor="let message of chat">
+<ng-template [ngIf]="!hasChat">
+  <p>You havn't chatted with yet!</p>
+</ng-template>
+<ng-template [ngIf]="hasChat">
+  <div 
+  *ngFor="let message of chat">
     <div class="container darker">
       <img src="/assets/blank-profile.png" alt="Avatar" class="right">
       <p class="text-style">{{ message.message }}</p>
       <span class="time-left">{{ message.time }}</span>
     </div>
   </div>
+</ng-template>
 </div>
 
 <hr>

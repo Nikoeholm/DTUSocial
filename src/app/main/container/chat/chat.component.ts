@@ -18,7 +18,8 @@ export class ChatComponent implements OnInit {
   message: Message;
   chat: Message[];
   chatter: User;
-  isChatLoaded = false;
+  hasChat: boolean;
+  time: Date[];
 
   constructor(private usersService: UsersService,
               private chatService: ChatService,
@@ -29,7 +30,6 @@ export class ChatComponent implements OnInit {
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
         console.log('Chatter: ' + this.chatter.brugernavn);
-        this.isChatLoaded = true;
         // Load chat
         this.retreiveChat();
       }
@@ -37,7 +37,14 @@ export class ChatComponent implements OnInit {
   }
 
   setChat(chat: Message[]) {
-    this.chat = chat;
+    if (chat.length === 0) {
+      this.hasChat = false;
+      return;
+    } else {
+      this.hasChat = true;
+      this.chat = chat;
+      return;
+    }
   }
 
   retreiveChat() {

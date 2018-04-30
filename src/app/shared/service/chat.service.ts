@@ -16,9 +16,27 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   chat: Message[];
+  time: Date[];
 
   getChat() {
     return this.chat.slice();
+  }
+
+  convertUnixTime(chat: Message[]) {
+    if (chat.length === 0) {
+      this.time = null;
+      return;
+    }
+    for (const message of chat) {
+      const unixTime = message.time;
+      const time = new Date(unixTime * 1000);
+      console.log(time);
+      this.time.push(time);
+    }
+  }
+
+  getTime() {
+    return this.time.slice();
   }
 
   sendMessage(message: Message) {
@@ -43,6 +61,8 @@ export class ChatService {
         (messages) => {
           console.log(messages);
           this.chat = messages;
+          // Time conversition
+          // this.convertUnixTime(messages);
         }
       )
       .catch(
