@@ -1,6 +1,3 @@
-<mat-tab-group>
-  <mat-tab label="Chat">
-
 <div class="content">
 <!--  <div class="container">
     <img src="/assets/blank-profile.png" alt="Avatar">
@@ -24,10 +21,12 @@
   <p>You havn't chatted with yet!</p>
 </ng-template>
 <ng-template [ngIf]="hasChat">
-  <div
-  *ngFor="let message of chat">
-    <div class="container darker">
-      <img src="/assets/blank-profile.png" alt="Avatar" class="right">
+  <div *ngFor="let message of chat">
+    <div
+    class="container"
+    [ngClass]="{'darker':message.interactorId !== 's165162'}">
+      <img src="/assets/blank-profile.png" alt="Avatar"
+      [ngClass]="{'right':message.interactorId !== 's165162'}">
       <p class="text-style">{{ message.message }}</p>
       <span class="time-left">{{ message.time }}</span>
     </div>
@@ -43,10 +42,3 @@
   <button mat-button (click)="onSendMessage()">Send</button>
 </p>
 <hr>
-
-
-  </mat-tab>
-  <mat-tab label="Drev">
-    <app-drive></app-drive>
-  </mat-tab>
-</mat-tab-group>

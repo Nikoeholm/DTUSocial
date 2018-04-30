@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   chatter: User;
   hasChat: boolean;
   time: Date[];
+  username: string;
 
   constructor(private usersService: UsersService,
               private chatService: ChatService,
@@ -30,6 +31,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.username = window.localStorage.getItem('username');
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
@@ -62,10 +64,9 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   onSendMessage() {
-    const username = window.localStorage.getItem('username');
     const currentMessage = this.messageInputRef.nativeElement.value;
     this.message = new Message(currentMessage,
-                                username,
+                                this.username,
                                 this.chatter.brugernavn,
                                 0);
     this.chatService.sendMessage(this.message).subscribe(
