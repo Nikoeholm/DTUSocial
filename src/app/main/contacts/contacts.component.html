@@ -10,8 +10,9 @@
 <br>
     <h5>Personer</h5>
     <hr>
-    <!-- [routerLink]="['personal', user.brugernavn]" -->
+
     <mat-list
+        [routerLink]="['personal', user.brugernavn]"
         *ngFor="let user of users; let i = index"
         (click)="onPersonalMessage(i)">
         <mat-list-item><button mat-menu-item>{{ user.fornavn }}</button></mat-list-item>

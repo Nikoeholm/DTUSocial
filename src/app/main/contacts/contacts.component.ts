@@ -3,6 +3,7 @@ import {User} from '../../shared/model/user.model';
 import {UsersService} from '../../shared/service/users.service';
 import {GroupsComponent} from '../groups/groups.component';
 import { UserService } from '../../shared/service/user.service';
+import {Params} from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
