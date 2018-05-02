@@ -36,6 +36,10 @@ export class GroupService {
 
   }
 
+  setGroups(group: Group[]) {
+    this.groups = group;
+  }
+
   putGroupBackend(group: Group) {
     return this.http.put('http://localhost:8080/DTUSocial/groups', JSON.stringify(group), httpOptions).map(
       (response: Response) => {
@@ -53,8 +57,9 @@ export class GroupService {
   getGroupBackend() {
     // Reach REST endpoint
     return this.http.get<Group[]>('http://localhost:8080/DTUSocial/groups', httpOptions).map(
-      (group) => {
-        return console.log(group);
+      (groups) => {
+        this.setGroups(groups);
+        return console.log(groups);
       }
     )
       .catch(

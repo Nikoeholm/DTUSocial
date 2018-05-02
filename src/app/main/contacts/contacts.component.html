@@ -2,6 +2,10 @@
     <h5>Grupper</h5>
     <hr>
 
+    <mat-list *ngFor="let group of groups">
+      <mat-list-item><button mat-menu-item> {{ group.groupName }}</button></mat-list-item>
+    </mat-list>
+
     <h5>Personer</h5>
     <hr>
 

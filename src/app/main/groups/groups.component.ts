@@ -13,11 +13,7 @@ export class GroupsComponent implements OnInit {
 
   newGr = false;
 
-  public groups: {id: number, name: string}[] = [
-    {id: 1, name: 'CDIO'},
-    {id: 2, name: 'DTU Social'},
-    {id: 3, name: 'Android'},
-    {id: 4, name: 'Galgeleg'}];
+  groups: Group[];
 
   public users: string[] = [
     'Agam',
@@ -36,7 +32,7 @@ export class GroupsComponent implements OnInit {
   onGroupAdd() {
 
     this.groupService.getGroups();
-    console.log('onGroupAdd: Group added');
+    console.log('onGroupAdd: group added');
     // TODO: Get the correct userId and generete todoId
     const username = window.localStorage.getItem('user');
     const newGrp = new Group('1', 'CDIO', ['Agam', 'Khurram', 'Morten', 'Nikolaj']);
@@ -45,7 +41,7 @@ export class GroupsComponent implements OnInit {
           console.log(response);
 
           this.groupService.getGroupBackend().subscribe(
-            (groups) => console.log('Groups loaded from backend')
+            (group) => console.log('Groups loaded from backend')
           );
         },
         // TODO: Show error on Template

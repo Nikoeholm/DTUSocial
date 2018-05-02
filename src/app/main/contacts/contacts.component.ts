@@ -5,6 +5,7 @@ import {GroupsComponent} from '../groups/groups.component';
 import { UserService } from '../../shared/service/user.service';
 import {Params} from '@angular/router';
 import {Group} from '../../shared/model/group.model';
+import {GroupService} from '../../shared/service/group.service';
 
 @Component({
   selector: 'app-contacts',
@@ -18,7 +19,8 @@ export class ContactsComponent implements OnInit {
   users: User[];
 
   constructor(private userService: UserService,
-              private usersService: UsersService) { }
+              private usersService: UsersService,
+              private groupService: GroupService) { }
 
   ngOnInit() {
 
@@ -29,7 +31,19 @@ export class ContactsComponent implements OnInit {
     } catch (e) {
       throw new Error('Users couldn\'t be resolved');
     }
+
+    try {
+      this.groupService.getGroupBackend().subscribe((groups) => this.groups = this.groupService.getGroups()
+      );
+
+    } catch (e) {
+      throw new Error('Groups couldn\'t be resolved');
+
+    }
+
   }
+
+
 
   onPersonalMessage(index: number) {
     this.usersService.startPersonalConversation.next(index);
