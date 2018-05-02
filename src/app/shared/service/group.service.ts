@@ -20,7 +20,7 @@ export class GroupService {
 
   constructor(private http: HttpClient) { }
 
-  groups: Group[];
+  groups: Group[] = [];
 
   getGroups() {
     return this.groups;
