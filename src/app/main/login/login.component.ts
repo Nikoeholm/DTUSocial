@@ -20,6 +20,12 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
+    if (this.loginService.isAuthenticated()) {
+      this.router.navigate(['/home']);
+    }
+    if (!this.loginService.isAuthenticated()) {
+      this.router.navigate(['/login']);
+    }
     this.loginForm = new FormGroup({
       'userName': new FormControl(null, [Validators.required]),
       'passWord': new FormControl(null, [Validators.required])
