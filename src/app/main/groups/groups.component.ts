@@ -3,6 +3,8 @@ import {NgForm} from '@angular/forms';
 import {Todo} from '../../shared/model/todo-list.model';
 import {GroupService} from '../../shared/service/group.service';
 import {Group} from '../../shared/model/group.model';
+import {UsersService} from '../../shared/service/users.service';
+import {User} from '../../shared/model/user.model';
 
 @Component({
   selector: 'app-groups',
@@ -15,16 +17,20 @@ export class GroupsComponent implements OnInit {
 
   groups: Group[];
 
-  public users: string[] = [
-    'Agam',
-    'Khurram',
-    'Morten',
-    'Nikolaj'];
+   users: User[];
 
 
-  constructor(private groupService: GroupService) { }
+  constructor(private groupService: GroupService, private usersService: UsersService) { }
 
   ngOnInit() {
+
+    try {
+      this.usersService.retrieveUsers().subscribe(
+        (users) => this.users = this.usersService.getUsers()
+      );
+    } catch (e) {
+      throw new Error('Users couldn\'t be resolved');
+    }
   }
 
 
