@@ -26,6 +26,7 @@ import {UsersService} from './shared/service/users.service';
 import { UserService } from './shared/service/user.service';
 import { DTUSocialAuthInterceptor } from './shared/DTUSocialAuthInterceptor';
 import { DataService } from './shared/APIService';
+import {GroupService} from './shared/service/group.service';
 
 
 
@@ -60,6 +61,7 @@ import { DataService } from './shared/APIService';
     UsersService,
     UserService,
     DataService,
+    GroupService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: DTUSocialAuthInterceptor,

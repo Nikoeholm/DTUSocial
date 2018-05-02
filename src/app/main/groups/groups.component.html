@@ -1,17 +1,50 @@
 
-<mat-card class="fill-window">
-  Her er alle dine grupper:
-</mat-card>
-
 <div class="row fill-window">
+
   <div class="col-md-2">
+    <h5>Dine grupper:</h5>
+    <hr>
     <mat-list
       *ngFor="let group of groups">
       <mat-list-item><button mat-menu-item>{{ group.name }}</button></mat-list-item>
     </mat-list>
   </div>
   <br>
-  <div class="col-md-10">
-    <app-todo></app-todo>
+
+
+
+  <div class="col-md">
+<mat-card>
+  <div>
+    <button type="button" class="btn btn-primary" (click)="onGroupAdd()">Opret ny gruppe</button>
   </div>
+
+
+    <mat-form-field class="full-width">
+      <input type="text" id="message" matInput placeholder="Navn på ny gruppe:">
+    </mat-form-field>
+
+    <mat-selection-list #todomessage>
+      <mat-list-option *ngFor="let user of users">
+        {{user}}
+      </mat-list-option>
+    </mat-selection-list>
+
+    <button type="button" class="btn-outline-success">Opret!</button>
+
+</mat-card>
+
+  </div>
+
+
+  <!--<mat-card class="fill-window">-->
+  <!--<div class="fill-window">-->
+    <!--<mat-list-->
+      <!--*ngFor="let user of users">-->
+      <!--<mat-list-item><button mat-menu-item>{{ user.name }}</button></mat-list-item>-->
+    <!--</mat-list>-->
+  <!--</div>-->
+<!--</mat-card>-->
+
+
 </div>
