@@ -7,7 +7,6 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 })
 export class ContainerComponent implements OnInit {
 
-
   constructor() { }
 
   ngOnInit() {

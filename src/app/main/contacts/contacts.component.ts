@@ -43,8 +43,6 @@ export class ContactsComponent implements OnInit {
 
   }
 
-
-
   onPersonalMessage(index: number) {
     this.usersService.startPersonalConversation.next(index);
   }

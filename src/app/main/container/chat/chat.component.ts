@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit, OnDestroy {
   hasChat: boolean;
   time: Date[];
   username: string;
-
+  
   constructor(private usersService: UsersService,
               private chatService: ChatService,
               private userService: UserService) { }

@@ -8,7 +8,7 @@ import {TodoListComponent} from './main/todo/todo-list.component';
 import {ChatComponent} from './main/container/chat/chat.component';
 import { ContainerComponent } from './main/container/container.component';
 import {GroupsComponent} from './main/groups/groups.component';
-import {LoginComponent} from "./main/login/login.component";
+import {LoginComponent} from './main/login/login.component';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },

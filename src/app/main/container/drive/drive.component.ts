@@ -1,5 +1,5 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {DomSanitizer} from '@angular/platform-browser';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-drive',
@@ -18,7 +18,7 @@ export class DriveComponent implements OnInit {
   ngOnInit() {
   }
 
-  onGetURL(){
+  onGetURL() {
     const getUrl = this.urlInputRef.nativeElement.value;
     this.url = this.url + getUrl + '#list';
     this.urlGiven = true;
