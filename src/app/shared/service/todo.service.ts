@@ -1,33 +1,32 @@
-
 import {EventEmitter, Injectable} from '@angular/core';
 import {Todo} from '../model/todo-list.model';
 import {Subject} from 'rxjs/Subject';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {User} from '../model/user.model';
-import { UserService } from './user.service';
+import {UserService} from './user.service';
+import {DataService} from '../APIService';
 
 const httpOptions = {
-  headers: new HttpHeaders({'content-type': 'application/json' })
+  headers: new HttpHeaders({'content-type': 'application/json'})
 };
 
 @Injectable()
 export class TodoService {
 
   constructor(private http: HttpClient,
-              private userService: UserService) {}
-
-  baseUrl: string = 'http://localhost:8080/DTUSocial';
+              private userService: UserService,
+              private apiService: DataService) {
+  }
 
   // Subject which can be listen to in other componentes
   startedEditing = new Subject<number>();
   todosChanged = new EventEmitter<Todo[]>();
 
-  // todos: Todo[];
   todos: Todo[];
 
   putTodo(todo: Todo) {
-    return this.http.put('http://localhost:8080/DTUSocial/todos', JSON.stringify(todo), httpOptions).map(
+    return this.apiService.putTodo('todos', JSON.stringify(todo), httpOptions).map(
       (response: Response) => {
         console.log(response);
       }
@@ -41,33 +40,33 @@ export class TodoService {
   }
 
   getPersonalTodos() {
-      // Reach REST endpoint
-      return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/users/' +
+    // Reach REST endpoint
+    return this.apiService.getTodo<Todo[]>('users/' +
       this.userService.getUser().brugernavn + '/todos/',
-                      httpOptions).map(
-        (todos) => {
-            this.setTodos(todos);
-            return console.log(todos);
+      httpOptions).map(
+      (todos) => {
+        this.setTodos(todos);
+        return console.log(todos);
+      }
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Something went wrong in TodoService');
         }
-      )
-        .catch(
-          (error: Response) => {
-            console.log(error);
-            return Observable.throw('Something went wrong in TodoService');
-          }
-        );
+      );
 
   }
 
   getSharedTodos(sharedId: string) {
     this.todos = [];
     // Reach REST endpoint
-    return this.http.get<Todo[]>(this.baseUrl + '/todos/shared/' + sharedId, httpOptions).map(
+    return this.apiService.getTodo<Todo[]>('todos/shared/' + sharedId, httpOptions).map(
       (todos) => {
         console.log(todos);
-          this.setTodos(todos);
-          console.error('Shared todos');
-          return console.log(todos);
+        this.setTodos(todos);
+        console.error('Shared todos');
+        return console.log(todos);
       }
     )
       .catch(
@@ -77,36 +76,36 @@ export class TodoService {
         }
       );
 
-}
+  }
 
 
   patchTodoBackend(todo: Todo) {
-    return this.http.patch('http://localhost:8080/DTUSocial/todos/' + todo.todoId,  JSON.stringify(todo), httpOptions).map(
+    return this.apiService.patchTodo('todos/' + todo.todoId, JSON.stringify(todo), httpOptions).map(
       (response: Response) => {
         return console.log(response);
-    }
-  )
-    .catch(
-      (error: Response) => {
-        console.log(error);
-        return Observable.throw('Something went wrong in TodoService: PATCH TODO');
       }
-    );
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Something went wrong in TodoService: PATCH TODO');
+        }
+      );
   }
 
 
   deleteTodoBackend(todoId: number) {
-    return this.http.delete('http://localhost:8080/DTUSocial/todos/' + todoId, httpOptions).map(
-        (response: Response) => {
-            return console.log(response);
+    return this.apiService.deleteTodo('todos/' + todoId, httpOptions).map(
+      (response: Response) => {
+        return console.log(response);
+      }
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('Something went wrong in TodoService: DELETE TODO');
         }
-      )
-        .catch(
-          (error: Response) => {
-            console.log(error);
-            return Observable.throw('Something went wrong in TodoService: DELETE TODO');
-          }
-        );
+      );
   }
 
   getTodos() {
@@ -151,38 +150,38 @@ export class TodoService {
     this.todosChanged.next(this.todos.slice());
   }
 
-/*
-  getPersonalTodos(id: string) {
-     // Reach REST endpoint
-     return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/todos/personal/' + id, httpOptions).map(
-      (todos) => {
-          this.setTodos(todos);
-          return console.log(todos);
+  /*
+    getPersonalTodos(id: string) {
+       // Reach REST endpoint
+       return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/todos/personal/' + id, httpOptions).map(
+        (todos) => {
+            this.setTodos(todos);
+            return console.log(todos);
+        }
+      )
+        .catch(
+          (error: Response) => {
+            console.log(error);
+            return Observable.throw('TodoService: Couldn\'t get personal todos');
+          }
+        );
+
+    }
+    */
+
+  putPersonalTodo(id: string, todo: Todo) {
+    // Reach REST endpoint
+    return this.apiService.putTodo('todos/shared/' + id, JSON.stringify(todo), httpOptions).map(
+      (response: Response) => {
+        console.log(response);
       }
     )
       .catch(
         (error: Response) => {
           console.log(error);
-          return Observable.throw('TodoService: Couldn\'t get personal todos');
+          return Observable.throw('TodoService: Couldn\'t put shared todos');
         }
       );
 
   }
-  */
-
-  putPersonalTodo(id: string, todo: Todo) {
-    // Reach REST endpoint
-    return this.http.put('http://localhost:8080/DTUSocial/todos/shared/' + id, JSON.stringify(todo), httpOptions).map(
-      (response: Response) => {
-        console.log(response);
-      }
-   )
-     .catch(
-       (error: Response) => {
-         console.log(error);
-         return Observable.throw('TodoService: Couldn\'t put shared todos');
-       }
-     );
-
- }
 }

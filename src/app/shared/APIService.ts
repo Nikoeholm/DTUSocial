@@ -1,22 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {HttpParams} from '@angular/common/http/src/params';
+
 
 @Injectable()
 export class DataService {
 
-    private baseUrl = 'http://localhost:8080/DTUSocial';
-    constructor(
-        private http: HttpClient) {
-    }
+  private baseUrl = 'http://localhost:8080/DTUSocial';
 
-    get(url, params): Observable<any> {
-        return this.http.get<any>(this.baseUrl + '/' + url, params);
-    }
+  constructor(private http: HttpClient) {
+  }
 
-    post(url, body): Observable<any> {
-        return this.http.post<any>(this.baseUrl + '/' + url, body);
-    }
+  getTodo<Todo>(url, params): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/' + url, params);
+  }
+
+  putTodo(url, body, params): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/' + url, body, params);
+  }
+
+  patchTodo(url, body, params): Observable<any> {
+    return this.http.patch<any>(this.baseUrl + '/' + url, body, params);
+  }
+
+  deleteTodo(url, params): Observable<any> {
+    return this.http.delete<any>(this.baseUrl + '/' + url, params);
+  }
+
 }
 
 
