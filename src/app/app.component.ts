@@ -4,6 +4,7 @@ import { UsersService } from './shared/service/users.service';
 import { TodoService } from './shared/service/todo.service';
 import { User } from './shared/model/user.model';
 import { UserService } from './shared/service/user.service';
+import { AUTOCOMPLETE_OPTION_HEIGHT } from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -17,9 +18,11 @@ export class AppComponent implements OnInit {
       const token = window.localStorage.getItem('access_token');
       this.loginService.setTokenFromLocalStorage(token);
       const user = window.localStorage.getItem('user');
+      if (user != null) {
       this.userService.retrieveUser(user).subscribe(
         (response) => console.log('User retrieved')
       );
+    }
     } catch (e) {
       throw new Error('Token couldn\'t be resolved');
     }
