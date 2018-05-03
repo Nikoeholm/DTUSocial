@@ -15,6 +15,8 @@ export class TodoService {
 
   constructor(private http: HttpClient) {}
 
+  baseUrl: string = 'http://localhost:8080/DTUSocial';
+
   // Subject which can be listen to in other componentes
   startedEditing = new Subject<number>();
   todosChanged = new EventEmitter<Todo[]>();
@@ -52,6 +54,23 @@ export class TodoService {
         );
 
   }
+
+  getSharedTodos(sharedId: string) {
+    // Reach REST endpoint
+    return this.http.get<Todo[]>(this.baseUrl + '/personal/' + sharedId, httpOptions).map(
+      (todos) => {
+          this.setTodos(todos);
+          return console.log(todos);
+      }
+    )
+      .catch(
+        (error: Response) => {
+          console.log(error);
+          return Observable.throw('getSharedTodos(): Something went wrong in TodoService');
+        }
+      );
+
+}
 
 
   patchTodoBackend(todo: Todo) {

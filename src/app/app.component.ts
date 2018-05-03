@@ -3,6 +3,7 @@ import { LoginService } from './shared/service/login.service';
 import { UsersService } from './shared/service/users.service';
 import { TodoService } from './shared/service/todo.service';
 import { User } from './shared/model/user.model';
+import { UserService } from './shared/service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +16,15 @@ export class AppComponent implements OnInit {
     try {
       const token = window.localStorage.getItem('access_token');
       this.loginService.setTokenFromLocalStorage(token);
+      const user = window.localStorage.getItem('user');
+      this.userService.retrieveUser(user).subscribe(
+        (response) => console.log('User retrieved')
+      );
     } catch (e) {
       throw new Error('Token couldn\'t be resolved');
     }
   }
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService,
+              private userService: UserService) {
   }
 }

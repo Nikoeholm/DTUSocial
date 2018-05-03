@@ -9,6 +9,9 @@ import {Todo} from '../../../shared/model/todo-list.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
 import {Observable} from 'rxjs/Observable';
+import { UsersService } from '../../../shared/service/users.service';
+import { User } from '../../../shared/model/user.model';
+import { UserService } from '../../../shared/service/user.service';
 
 @Component({
   selector: 'app-todo-edit',
@@ -16,17 +19,32 @@ import {Observable} from 'rxjs/Observable';
   styleUrls: ['./todo-edit.component.css']
 })
 export class TodoEditComponent implements OnInit, OnDestroy {
-  @ViewChild('form') todoForm: NgForm;
-  subscription: Subscription;
+  // Variable declarations
   editMode = false;
   editedTodoIndex: number;
+  sharedId: string;
+  // Object declarations
+  @ViewChild('form') todoForm: NgForm;
+  onPersonalConversationSubs: Subscription;
+  subscription: Subscription;
+  chatter: User;
   editedTodo: Todo;
 
-  constructor(private todoService: TodoService) {
+  constructor(private todoService: TodoService,
+              private usersService: UsersService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
-
+    this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
+      (index: number) => {
+        this.chatter = this.usersService.getUser(index);
+        console.log('Todoer: ' + this.chatter.brugernavn);
+        // Get todos from backend
+        console.log(this.userService.getUser().brugernavn + '' + this.chatter.brugernavn);
+        this.todoService.getSharedTodos(this.userService.getUser().brugernavn + '' + this.chatter.brugernavn);
+      }
+    );
     // Event listener
     this.subscription = this.todoService.startedEditing
       .subscribe(
