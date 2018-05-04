@@ -24,23 +24,6 @@ export class ChatService {
     return this.chat.slice();
   }
 
-  convertUnixTime(chat: Message[]) {
-    if (chat.length === 0) {
-      this.time = null;
-      return;
-    }
-    for (const message of chat) {
-      const unixTime = message.time;
-      const time = new Date(unixTime * 1000);
-      console.log(time);
-      this.time.push(time);
-    }
-  }
-
-  getTime() {
-    return this.time.slice();
-  }
-
   sendMessage(message: Message) {
     return this.apiService.putMessage('chat/personal', JSON.stringify(message), httpOptions)
       .map(
@@ -62,6 +45,11 @@ export class ChatService {
       .map(
         (messages) => {
           console.log(messages);
+          for (const message of messages) {
+            const unixTime = message.time;
+            const time = new Date(unixTime * 1000);
+            message.time = time;
+          }
           this.chat = messages;
           // Time conversition
           // this.convertUnixTime(messages);

@@ -3,6 +3,6 @@ export class Message {
         public message: String,
         public userId: String,
         public interactorId: String,
-        public time: number
+        public time: any
     ) { }
 }
