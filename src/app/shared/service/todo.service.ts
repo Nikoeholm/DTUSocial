@@ -23,7 +23,7 @@ export class TodoService {
   startedEditing = new Subject<number>();
   todosChanged = new EventEmitter<Todo[]>();
 
-  todos: Todo[];
+  todos: Todo[] = [];
 
   putTodo(todo: Todo) {
     return this.apiService.putTodo('todos', JSON.stringify(todo), httpOptions).map(

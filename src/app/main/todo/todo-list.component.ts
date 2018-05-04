@@ -56,7 +56,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.onPersonalConversationSubs.unsubscribe();
+     this.onPersonalConversationSubs.unsubscribe();
 
   }
 

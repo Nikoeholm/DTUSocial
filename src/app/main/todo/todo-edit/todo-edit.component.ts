@@ -31,8 +31,8 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   chatter: User;
 
   constructor(private todoService: TodoService,
-    private usersService: UsersService,
-    private userService: UserService) {
+              private usersService: UsersService,
+              private userService: UserService) {
   }
 
   ngOnInit() {
@@ -102,6 +102,6 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+     this.subscription.unsubscribe();
   }
 }

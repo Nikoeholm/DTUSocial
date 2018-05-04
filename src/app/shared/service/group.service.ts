@@ -1,10 +1,10 @@
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 
 import 'rxjs/Rx';
 import {Group} from '../model/group.model';
 import {Observable} from 'rxjs/Observable';
-import {Todo} from '../model/todo-list.model';
+import {Subject} from 'rxjs/Subject';
 
 // Specify http header options here
 const httpOptions = {
@@ -22,6 +22,9 @@ export class GroupService {
 
   groups: Group[] = [];
 
+  startedEditing = new Subject<number>();
+  groupsChanged = new EventEmitter<Group[]>();
+
   getGroups() {
     return this.groups;
   }
@@ -32,12 +35,14 @@ export class GroupService {
 
   addGroups(group: Group) {
     this.groups.push(group);
+    this.groupsChanged.next(this.groups.slice());
     console.log('addGroup: Group added');
 
   }
 
   setGroups(group: Group[]) {
     this.groups = group;
+    this.groupsChanged.next(this.groups.slice());
   }
 
   putGroupBackend(group: Group) {

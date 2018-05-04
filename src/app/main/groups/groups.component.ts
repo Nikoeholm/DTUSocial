@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
 import {Todo} from '../../shared/model/todo-list.model';
 import {GroupService} from '../../shared/service/group.service';
 import {Group} from '../../shared/model/group.model';
 import {UsersService} from '../../shared/service/users.service';
 import {User} from '../../shared/model/user.model';
+import {Subscription} from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-groups',
@@ -19,8 +20,15 @@ export class GroupsComponent implements OnInit {
 
    users: User[];
 
+  @ViewChild('form') groupForm: NgForm;
+  subscription: Subscription;
+  editedGroup: Group;
+  editMode = false;
+  editedGroupIndex: number;
+
 
   constructor(private groupService: GroupService, private usersService: UsersService) { }
+
 
   ngOnInit() {
 
@@ -31,17 +39,39 @@ export class GroupsComponent implements OnInit {
     } catch (e) {
       throw new Error('Users couldn\'t be resolved');
     }
+
+    try {
+      this.groupService.getGroupBackend().subscribe((groups) => this.groups = this.groupService.getGroups()
+      );
+
+    } catch (e) {
+      throw new Error('Groups couldn\'t be resolved');
+
+    }
+
+    // Event listener
+    this.subscription = this.groupService.startedEditing
+      .subscribe(
+        (index: number) => {
+          this.editedGroupIndex = index;
+          this.editMode = true;
+          this.editedGroup = this.groupService.getGroup(index);
+          this.groupForm.setValue({
+            todomessage: this.editedGroup.groupName
+          });
+        }
+      );
   }
 
 
 
-  onGroupAdd() {
+  onGroupAdd(form: NgForm) {
 
     this.groupService.getGroups();
     console.log('onGroupAdd: group added');
     // TODO: Get the correct userId and generete todoId
     const username = window.localStorage.getItem('user');
-    const newGrp = new Group('1', 'CDIO', ['Agam', 'Khurram', 'Morten', 'Nikolaj']);
+    const newGrp = new Group('1', form.value.groupName, ['Agam', 'Khurram', 'Morten', 'Nikolaj']);
     this.groupService.putGroupBackend(newGrp).subscribe(
         (response) => {
           console.log(response);
@@ -55,4 +85,8 @@ export class GroupsComponent implements OnInit {
       );
       this.groupService.addGroups(newGrp);
     }
+
+  onEditGroup(index: number) {
+    this.groupService.startedEditing.next(index);
+  }
 }
