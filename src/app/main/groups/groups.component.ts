@@ -17,9 +17,9 @@ export class GroupsComponent implements OnInit {
   newGr = false;
 
   groups: Group[];
+  users: User[];
 
-   users: User[];
-
+  // Implementeret med henblik på, at kunne ændre en gruppe senere
   @ViewChild('form') groupForm: NgForm;
   subscription: Subscription;
   editedGroup: Group;
@@ -57,7 +57,7 @@ export class GroupsComponent implements OnInit {
           this.editMode = true;
           this.editedGroup = this.groupService.getGroup(index);
           this.groupForm.setValue({
-            todomessage: this.editedGroup.groupName
+            groupName: this.editedGroup.groupName
           });
         }
       );
@@ -66,15 +66,17 @@ export class GroupsComponent implements OnInit {
 
 
   onGroupAdd(form: NgForm) {
-
     this.groupService.getGroups();
     console.log('onGroupAdd: group added');
-    // TODO: Get the correct userId and generete todoId
+
+    // TODO: Get the correct userId and generete GroupId
     const username = window.localStorage.getItem('user');
     const newGrp = new Group('1', form.value.groupName, ['Agam', 'Khurram', 'Morten', 'Nikolaj']);
+
     this.groupService.putGroupBackend(newGrp).subscribe(
         (response) => {
           console.log(response);
+          
 
           this.groupService.getGroupBackend().subscribe(
             (group) => console.log('Groups loaded from backend')
