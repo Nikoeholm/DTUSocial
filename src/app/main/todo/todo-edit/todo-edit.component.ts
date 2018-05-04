@@ -76,9 +76,15 @@ export class TodoEditComponent implements OnInit, OnDestroy {
         this.todoService.putTodo(newTodo).subscribe(
           (response) => {
             console.log(response);
-            this.todoService.getPersonalTodos().subscribe(
-              (todos) => console.log('Todos loaded from backend')
-            );
+            if (this.sharedId == null) {
+              this.todoService.getPersonalTodos().subscribe(
+                (todos) => console.log('Personal: Todos loaded from backend')
+              );
+            } else {
+              this.todoService.getSharedTodos(this.sharedId).subscribe(
+                (todos) => console.log('Shared: Todos loaded from backend')
+              );
+            }
           },
           // TODO: Show error on Template
           (error) => console.error('Error while adding todo')
