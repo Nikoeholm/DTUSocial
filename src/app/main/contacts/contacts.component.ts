@@ -33,7 +33,8 @@ export class ContactsComponent implements OnInit {
     }
 
     try {
-      this.groupService.getGroupBackend().subscribe((groups) => this.groups = this.groupService.getGroups()
+      this.groupService.getGroupBackend().subscribe(
+        (groups) => this.groups = this.groupService.getGroups()
       );
 
     } catch (e) {

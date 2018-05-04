@@ -63,8 +63,9 @@ export class GroupService {
     // Reach REST endpoint
     return this.http.get<Group[]>('http://localhost:8080/DTUSocial/groups', httpOptions).map(
       (groups) => {
+        console.log(groups);
+        console.log('Groups are set!');
         this.setGroups(groups);
-        return console.log(groups);
       }
     )
       .catch(

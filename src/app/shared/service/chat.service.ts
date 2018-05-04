@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Message } from '../model/message.model';
+import {DataService} from '../APIService';
 
 // Specify http header options here
 const httpOptions = {
@@ -13,7 +14,8 @@ const httpOptions = {
 @Injectable()
 export class ChatService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private apiService: DataService) { }
 
   chat: Message[];
   time: Date[];
@@ -40,7 +42,7 @@ export class ChatService {
   }
 
   sendMessage(message: Message) {
-    return this.http.put('http://localhost:8080/DTUSocial/chat/personal', JSON.stringify(message), httpOptions)
+    return this.apiService.putMessage('chat/personal', JSON.stringify(message), httpOptions)
       .map(
         (response: Response) => {
           console.log(response);
@@ -56,7 +58,7 @@ export class ChatService {
 
   retrieveChat(chatterId: String) {
     // const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
-    return this.http.get<Message[]>('http://localhost:8080/DTUSocial/chat/personal/' + chatterId, httpOptions)
+    return this.apiService.getMessage<Message[]>('chat/personal/' + chatterId, httpOptions)
       .map(
         (messages) => {
           console.log(messages);

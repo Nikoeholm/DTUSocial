@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import { Credentials } from '../model/credentials.model';
 import { UserService } from './user.service';
+import {DataService} from '../APIService';
 
 // Specify http header options here
 const httpOptions = {
@@ -20,11 +21,12 @@ export class LoginService {
 
   constructor(private http: HttpClient,
               private router: Router,
-              private userService: UserService) {}
+              private userService: UserService,
+              private apiService: DataService) {}
 
   public postCredentials(credentials: Credentials) {
     // Reach to rest-endpoint
-    return this.http.post('http://localhost:8080/DTUSocial/login', JSON.stringify(credentials), httpOptions)
+    return this.apiService.postLogin('login', JSON.stringify(credentials), httpOptions)
     .map(
       (response: Response) => {
         this.token = response.toString();

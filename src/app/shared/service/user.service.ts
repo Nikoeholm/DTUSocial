@@ -3,6 +3,7 @@ import { User } from '../model/user.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import {DataService} from '../APIService';
 
 // Specify http header options here
 const httpOptions = {
@@ -14,7 +15,8 @@ const httpOptions = {
 @Injectable()
 export class UserService {
     user: User;
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private apiService: DataService) {
     }
 
     setUser(user: User) {
@@ -26,7 +28,7 @@ export class UserService {
     }
 
     retrieveUser(username: string) {
-        return this.http.get<User>('http://localhost:8080/DTUSocial/users/' + username, httpOptions).map(
+        return this.apiService.getUser<User>('users/' + username, httpOptions).map(
       (user) => {
           console.log(user);
           console.log('User is set!');

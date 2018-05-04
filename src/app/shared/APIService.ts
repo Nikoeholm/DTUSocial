@@ -7,7 +7,7 @@ import {HttpParams} from '@angular/common/http/src/params';
 @Injectable()
 export class DataService {
 
-  private baseUrl = 'http://localhost:8080/DTUSocial';
+  private baseUrl = 'http://130.225.170.246:8080/DTUSocial-1.0';
 
   constructor(private http: HttpClient) {
   }
@@ -26,6 +26,21 @@ export class DataService {
 
   deleteTodo(url, params): Observable<any> {
     return this.http.delete<any>(this.baseUrl + '/' + url, params);
+  }
+
+  postLogin(url, body, params): Observable<any> {
+    return this.http.post<any>(this.baseUrl + '/' + url, body, params);
+  }
+
+  getMessage<Message>(url, params): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/' + url, params);
+  }
+  putMessage(url, body, params): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/' + url, body, params);
+  }
+
+  getUser<User>(url, params): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
 
 }

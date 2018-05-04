@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import {DataService} from '../APIService';
 
 // Specify http header options here
 const httpOptions = {
@@ -21,11 +22,11 @@ export class UsersService {
     return this.users.slice();
   }
 
-  constructor(private http: HttpClient, router: Router) {}
+  constructor(private http: HttpClient, router: Router, private apiService: DataService) {}
 
   retrieveUsers() {
     // Reach REST endpoint
-    return this.http.get<User[]>('http://localhost:8080/DTUSocial/users/', httpOptions).map(
+    return this.apiService.getUser<User[]>('users/', httpOptions).map(
       (users) => {
         this.users = users;
       }
