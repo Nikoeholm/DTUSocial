@@ -33,17 +33,16 @@
       <button style="margin-top: 10px;"
               color="primary"
               mat-button
+              (click)="showGroupMembers(list)"
               (click)="onGroupAdd(form)"
               [disabled]="!form.valid">{{editMode ? 'Ret gruppe': 'Tilføj'}}
       </button>
     </div>
 
-    <mat-selection-list>
+    <mat-selection-list #list>
       <mat-list-option *ngFor="let user of users; let i = index">
         <mat-list-item>
-          <button mat-menu-item
-                  (selectChange)="onSelectOptionChange($event)">
-            {{ user.fornavn + ' ' + user.efternavn}}</button>
+          <button mat-menu-item (click)="toggleGroups(user.fornavn)">{{ user.fornavn + ' ' + user.efternavn}}</button>
         </mat-list-item>
       </mat-list-option>
     </mat-selection-list>

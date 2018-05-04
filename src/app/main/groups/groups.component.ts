@@ -16,11 +16,12 @@ export class GroupsComponent implements OnInit {
 
   newGr = false;
 
-  id = 1;
+  id = 0;
   groupName: string;
 
   groups: Group[];
   users: User[];
+
 
   // Implementeret med henblik på, at kunne ændre en gruppe senere
   @ViewChild('form') groupForm: NgForm;
@@ -29,7 +30,7 @@ export class GroupsComponent implements OnInit {
   editMode = false;
   editedGroupIndex: number;
 
-  groupMembers: any;
+  groupMembers: Array<string> = [];
 
   constructor(private groupService: GroupService, private usersService: UsersService) { }
 
@@ -67,12 +68,19 @@ export class GroupsComponent implements OnInit {
       );
   }
 
-  onSelectOptionChange(value: any) {
-    this.groupMembers = value;
 
+
+  toggleGroups(value: string) {
+    if (this.groupMembers.indexOf(value) !== -1) {
+      this.groupMembers.splice(this.groupMembers.indexOf(value), 1);
+    } else {
+      this.groupMembers.push(value);
+    }
   }
 
-
+  showGroupMembers(list) {
+    console.log('MEMBERS: ' + list);
+  }
 
   onGroupAdd(form: NgForm) {
     this.groupService.getGroups();
@@ -82,7 +90,7 @@ export class GroupsComponent implements OnInit {
     const username = window.localStorage.getItem('user');
     this.id = this.id + 1;
     this.groupName = form.value.groupName;
-    const newGrp = new Group(this.id.toString(), this.groupName, [this.groupMembers]);
+    const newGrp = new Group(this.id.toString(), this.groupName, this.groupMembers);
 
     this.groupService.putGroupBackend(newGrp).subscribe(
         (response) => {

@@ -48,7 +48,7 @@ export class DataService {
   }
 
   putGroups(url, body, params): Observable<any> {
-    return this.http.put(this.baseUrl + '/' + url, params);
+    return this.http.put(this.baseUrl + '/' + url, body, params);
   }
 
 }
