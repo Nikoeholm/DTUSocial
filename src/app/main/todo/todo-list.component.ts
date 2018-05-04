@@ -33,8 +33,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
         this.sharedId = this.userService.getUser().brugernavn + '' + this.chatter.brugernavn;
         console.log('Shared Id: ' + this.sharedId);
         this.todoService.getSharedTodos(
-          this.userService.getUser().brugernavn
-          + '' + this.chatter.brugernavn).subscribe(
+                                        this.userService.getUser().brugernavn
+                                        + '' + this.chatter.brugernavn).subscribe(
             (response) => {
               this.showSpinner = false;
               console.log('Shared todos loaded');

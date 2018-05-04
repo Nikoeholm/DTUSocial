@@ -27,9 +27,9 @@
   <div *ngFor="let message of chat">
     <div
     class="container"
-    [ngClass]="{'darker':message.interactorId !== 's165162'}">
+    [ngClass]="{'darker':message.interactorId !== user.brugernavn}">
       <img src="/assets/blank-profile.png" alt="Avatar"
-      [ngClass]="{'right':message.interactorId !== 's165162'}">
+      [ngClass]="{'right':message.interactorId !== user.brugernavn}">
       <p class="text-style">{{ message.message }}</p>
       <span class="time-left">{{ message.time }}</span>
     </div>
