@@ -5,6 +5,7 @@ import 'rxjs/Rx';
 import {Group} from '../model/group.model';
 import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
+import {DataService} from '../APIService';
 
 // Specify http header options here
 const httpOptions = {
@@ -18,7 +19,7 @@ const httpOptions = {
 @Injectable()
 export class GroupService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private apiService: DataService) { }
 
   groups: Group[] = [];
 
@@ -46,7 +47,7 @@ export class GroupService {
   }
 
   putGroupBackend(group: Group) {
-    return this.http.put('http://localhost:8080/DTUSocial/groups', JSON.stringify(group), httpOptions).map(
+    return this.apiService.putGroups('groups', JSON.stringify(group), httpOptions).map(
       (response: Response) => {
         console.log(response);
       }
@@ -61,7 +62,7 @@ export class GroupService {
 
   getGroupBackend() {
     // Reach REST endpoint
-    return this.http.get<Group[]>('http://localhost:8080/DTUSocial/groups', httpOptions).map(
+    return this.apiService.getGroups<Group[]>('groups', httpOptions).map(
       (groups) => {
         console.log(groups);
         console.log('Groups are set!');

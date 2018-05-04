@@ -41,7 +41,9 @@
     <mat-selection-list>
       <mat-list-option *ngFor="let user of users; let i = index">
         <mat-list-item>
-          <button mat-menu-item>{{ user.fornavn + ' ' + user.efternavn}}</button>
+          <button mat-menu-item
+                  (selectChange)="onSelectOptionChange($event)">
+            {{ user.fornavn + ' ' + user.efternavn}}</button>
         </mat-list-item>
       </mat-list-option>
     </mat-selection-list>

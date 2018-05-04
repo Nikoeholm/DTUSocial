@@ -43,6 +43,14 @@ export class DataService {
     return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
 
+  getGroups<Group>(url, params): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/' + url, params);
+  }
+
+  putGroups(url, body, params): Observable<any> {
+    return this.http.put(this.baseUrl + '/' + url, params);
+  }
+
 }
 
 

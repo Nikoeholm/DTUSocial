@@ -1,11 +1,11 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {Todo} from '../../shared/model/todo-list.model';
 import {GroupService} from '../../shared/service/group.service';
 import {Group} from '../../shared/model/group.model';
 import {UsersService} from '../../shared/service/users.service';
 import {User} from '../../shared/model/user.model';
 import {Subscription} from 'rxjs/Subscription';
+
 
 @Component({
   selector: 'app-groups',
@@ -15,6 +15,9 @@ import {Subscription} from 'rxjs/Subscription';
 export class GroupsComponent implements OnInit {
 
   newGr = false;
+
+  id = 1;
+  groupName: string;
 
   groups: Group[];
   users: User[];
@@ -26,6 +29,7 @@ export class GroupsComponent implements OnInit {
   editMode = false;
   editedGroupIndex: number;
 
+  groupMembers: any;
 
   constructor(private groupService: GroupService, private usersService: UsersService) { }
 
@@ -63,6 +67,11 @@ export class GroupsComponent implements OnInit {
       );
   }
 
+  onSelectOptionChange(value: any) {
+    this.groupMembers = value;
+
+  }
+
 
 
   onGroupAdd(form: NgForm) {
@@ -71,12 +80,14 @@ export class GroupsComponent implements OnInit {
 
     // TODO: Get the correct userId and generete GroupId
     const username = window.localStorage.getItem('user');
-    const newGrp = new Group('1', form.value.groupName, ['Agam', 'Khurram', 'Morten', 'Nikolaj']);
+    this.id = this.id + 1;
+    this.groupName = form.value.groupName;
+    const newGrp = new Group(this.id.toString(), this.groupName, [this.groupMembers]);
 
     this.groupService.putGroupBackend(newGrp).subscribe(
         (response) => {
           console.log(response);
-          
+
 
           this.groupService.getGroupBackend().subscribe(
             (group) => console.log('Groups loaded from backend')
