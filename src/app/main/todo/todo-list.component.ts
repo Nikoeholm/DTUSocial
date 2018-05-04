@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {TodoService} from '../../shared/service/todo.service';
-import {Todo} from '../../shared/model/todo-list.model';
-import {Subscription} from 'rxjs/Subscription';
+import { TodoService } from '../../shared/service/todo.service';
+import { Todo } from '../../shared/model/todo-list.model';
+import { Subscription } from 'rxjs/Subscription';
 import { UsersService } from '../../shared/service/users.service';
 import { User } from '../../shared/model/user.model';
 import { UserService } from '../../shared/service/user.service';
@@ -17,37 +17,45 @@ export class TodoListComponent implements OnInit, OnDestroy {
   onPersonalConversationSubs: Subscription;
   chatter: User;
   sharedId: string;
+  showSpinner: boolean = false;
 
   constructor(private todoService: TodoService,
-              private usersService: UsersService,
-              private userService: UserService) { }
+    private usersService: UsersService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
+        this.showSpinner = true;
         this.chatter = this.usersService.getUser(index);
         console.log('Todoer: ' + this.chatter.brugernavn);
         // Get todos from backend
         this.sharedId = this.userService.getUser().brugernavn + '' + this.chatter.brugernavn;
         console.log('Shared Id: ' + this.sharedId);
-        this.todoService.getSharedTodos(this.userService.getUser().brugernavn + '' + this.chatter.brugernavn)
-                  .subscribe(
-                    (response) => console.log('Shared todos loaded')
-                  );
+        this.todoService.getSharedTodos(
+          this.userService.getUser().brugernavn
+          + '' + this.chatter.brugernavn).subscribe(
+            (response) => {
+              this.showSpinner = false;
+              console.log('Shared todos loaded');
+            },
+            (error) => this.showSpinner = false);
       }
     );
 
     if (!this.sharedId == null) {
       // Retrieve TODOS from backend
       this.todoService.getPersonalTodos().subscribe(
-        (response) => console.log('Personal todos loaded')
-       );
-      }
+        (response) => {
+          this.showSpinner = false,
+          console.log('Personal todos loaded');
+      });
+    }
 
     this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: Todo[]) => {
-        this.todos = todos;
-      }
+      this.todos = todos;
+    }
     );
   }
 
@@ -56,8 +64,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-     this.onPersonalConversationSubs.unsubscribe();
-
+    this.onPersonalConversationSubs.unsubscribe();
+    this.showSpinner = false;
   }
 
 }

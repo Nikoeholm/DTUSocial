@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private credentials: Credentials;
   private auth = true;
+  showSpinner: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private loginService: LoginService, private router: Router) { }
 
@@ -39,10 +40,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   onSubmit(form: NgForm) {
     this.credentials = new Credentials(this.loginForm.get('userName').value, this.loginForm.get('passWord').value);
-
+    this.showSpinner = true;
     this.loginService.postCredentials(this.credentials).subscribe(
-      (response) => console.log('Successfully logged in.'),
+      (response) => {console.log('Successfully logged in.'), this.showSpinner = false; },
       (error) => {this.auth = false;
+        this.showSpinner = false;
         console.error('error test');
       }
 
