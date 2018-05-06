@@ -60,7 +60,6 @@ export class TodoService {
       (todos) => {
         console.log(todos);
         this.setTodos(todos);
-        console.error('Shared todos');
         return console.log(todos);
       }
     )
