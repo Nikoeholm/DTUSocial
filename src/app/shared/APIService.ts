@@ -10,6 +10,7 @@ const params = {
 export class DataService {
 
   private baseUrl = 'http://130.225.170.246:8080/DTUSocial-1.0';
+  // private baseUrl = 'http://localhost:8080/DTUSocial';
 
   constructor(private http: HttpClient) {
   }
