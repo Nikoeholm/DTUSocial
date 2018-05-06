@@ -22,7 +22,7 @@ export class TodoService {
   todos: Todo[] = [];
 
   putTodo(todo: Todo) {
-    return this.apiService.putTodo('todos', JSON.stringify(todo)).map(
+    return this.apiService.put('todos', JSON.stringify(todo)).map(
       (response: Response) => {
         console.log(response);
       }
@@ -37,7 +37,7 @@ export class TodoService {
 
   getPersonalTodos() {
     // Reach REST endpoint
-    return this.apiService.getTodo<Todo[]>('users/' +
+    return this.apiService.get<Todo[]>('users/' +
       this.userService.getUser().brugernavn + '/todos/').map(
       (todos) => {
         this.setTodos(todos);
@@ -56,7 +56,7 @@ export class TodoService {
   getSharedTodos(sharedId: string) {
     this.todos = [];
     // Reach REST endpoint
-    return this.apiService.getTodo<Todo[]>('todos/shared/' + sharedId).map(
+    return this.apiService.get<Todo[]>('todos/shared/' + sharedId).map(
       (todos) => {
         console.log(todos);
         this.setTodos(todos);
@@ -75,7 +75,7 @@ export class TodoService {
 
 
   patchTodoBackend(todo: Todo) {
-    return this.apiService.patchTodo('todos/' + todo.todoId, JSON.stringify(todo)).map(
+    return this.apiService.patch('todos/' + todo.todoId, JSON.stringify(todo)).map(
       (response: Response) => {
         return console.log(response);
       }
@@ -90,7 +90,7 @@ export class TodoService {
 
 
   deleteTodoBackend(todoId: number) {
-    return this.apiService.deleteTodo('todos/' + todoId).map(
+    return this.apiService.delete('todos/' + todoId).map(
       (response: Response) => {
         return console.log(response);
       }
@@ -166,7 +166,7 @@ export class TodoService {
 
   putPersonalTodo(id: string, todo: Todo) {
     // Reach REST endpoint
-    return this.apiService.putTodo('todos/shared/' + id, JSON.stringify(todo)).map(
+    return this.apiService.put('todos/shared/' + id, JSON.stringify(todo)).map(
       (response: Response) => {
         console.log(response);
       }

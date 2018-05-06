@@ -38,7 +38,7 @@ export class GroupService {
   }
 
   putGroupBackend(group: Group) {
-    return this.apiService.putGroups('groups', JSON.stringify(group)).map(
+    return this.apiService.put('groups', JSON.stringify(group)).map(
       (response: Response) => {
         console.log(response);
       }
@@ -53,7 +53,7 @@ export class GroupService {
 
   getGroupBackend() {
     // Reach REST endpoint
-    return this.apiService.getGroups<Group[]>('groups').map(
+    return this.apiService.get<Group[]>('groups').map(
       (groups) => {
         console.log(groups);
         console.log('Groups are set!');

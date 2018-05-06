@@ -21,7 +21,7 @@ export class ChatService {
   }
 
   sendMessage(message: Message) {
-    return this.apiService.putMessage('chat/personal', JSON.stringify(message))
+    return this.apiService.put('chat/personal', JSON.stringify(message))
       .map(
         (response: Response) => {
           console.log(response);
@@ -37,7 +37,7 @@ export class ChatService {
 
   retrieveChat(chatterId: String) {
     // const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
-    return this.apiService.getMessage<Message[]>('chat/personal/' + chatterId)
+    return this.apiService.get<Message[]>('chat/personal/' + chatterId)
       .map(
         (messages) => {
           console.log(messages);

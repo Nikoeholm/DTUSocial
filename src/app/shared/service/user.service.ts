@@ -21,7 +21,7 @@ export class UserService {
     }
 
     retrieveUser(username: string) {
-        return this.apiService.getUser<User>('users/' + username).map(
+        return this.apiService.get<User>('users/' + username).map(
       (user) => {
           console.log(user);
           console.log('User is set!');

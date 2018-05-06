@@ -20,7 +20,7 @@ export class UsersService {
 
   retrieveUsers() {
     // Reach REST endpoint
-    return this.apiService.getUser<User[]>('users/').map(
+    return this.apiService.get<User[]>('users/').map(
       (users) => {
         this.users = users;
       }

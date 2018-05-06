@@ -20,7 +20,7 @@ export class LoginService {
 
   public postCredentials(credentials: Credentials) {
     // Reach to rest-endpoint
-    return this.apiService.postLogin('login', JSON.stringify(credentials))
+    return this.apiService.post('login', JSON.stringify(credentials))
     .map(
       (response: Response) => {
         this.token = response.toString();
