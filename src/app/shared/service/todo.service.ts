@@ -58,7 +58,6 @@ export class TodoService {
     // Reach REST endpoint
     return this.apiService.get<Todo[]>('todos/shared/' + sharedId).map(
       (todos) => {
-        console.log(todos);
         this.setTodos(todos);
         return console.log(todos);
       }
