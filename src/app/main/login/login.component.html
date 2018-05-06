@@ -3,18 +3,11 @@
   <div align="center">
     <img src="../../../assets/DTUSocial-logo3.jpg" height="97" width="203"/><br> <br>
     <div class="form">
-    <!--<form [formGroup]="loginForm" class="register-form">
-      <input type="text" placeholder="Name"/>
-      <input type="password" placeholder="Password"/>
-      <input type="text" placeholder="email address"/>
-      <button>create</button>
-      <p class="message">Already registered? <a href="#">Sign In</a></p>
-    </form>-->
       <div class="alert alert-danger"
         *ngIf="!auth">
-        Brugernavn og password matcher ikke.
+        <p>Brugernavn eller password er indtastet forkert.</p>
       </div>
-      <mat-spinner *ngIf="showSpinner"></mat-spinner>
+      <mat-spinner class="center-spinner" *ngIf="showSpinner"></mat-spinner>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
       <input type="text"
              id="userName"
@@ -24,7 +17,7 @@
         *ngIf="!loginForm.get('userName').valid && loginForm.get('userName').touched"
         >
         <span *ngIf="loginForm.get('userName').errors['required']"
-              class="alert alert-danger">
+              class="alert alert-warning">
           Udfyld Brugernavn
         </span><br>
       </span><br>
@@ -36,7 +29,7 @@
         *ngIf="!loginForm.get('passWord').valid && loginForm.get('passWord').touched"
         class="">
         <span *ngIf="loginForm.get('passWord').errors['required']"
-              class="alert alert-danger">
+              class="alert alert-warning">
           Udfyld Adgangskode
         </span><br>
       </span><br>

@@ -1,7 +1,7 @@
 <mat-card class="fill-window">
   <app-todo-edit></app-todo-edit>
   <br>
-  <mat-spinner *ngIf="showSpinner"></mat-spinner>
+  <mat-spinner class="center-spinner" *ngIf="showSpinner"></mat-spinner>
     <mat-list-item *ngFor="let todo of todos; let i = index"
     (click)="onEditTodo(i)">
       <button mat-menu-item>{{todo.message}}</button>

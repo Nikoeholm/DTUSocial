@@ -4,10 +4,11 @@
   overflow: scroll;
 }
 
-
 .margin {
   margin-bottom: 10px;
 }
 
-
+.center-spinner {
+  margin: 0 auto;
+}
 
