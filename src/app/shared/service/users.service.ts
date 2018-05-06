@@ -7,12 +7,6 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import {DataService} from '../APIService';
 
-// Specify http header options here
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json'
-  })
-};
 @Injectable()
 export class UsersService {
   users: User[];
@@ -26,7 +20,7 @@ export class UsersService {
 
   retrieveUsers() {
     // Reach REST endpoint
-    return this.apiService.getUser<User[]>('users/', httpOptions).map(
+    return this.apiService.getUser<User[]>('users/').map(
       (users) => {
         this.users = users;
       }

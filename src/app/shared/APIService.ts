@@ -3,6 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {HttpParams} from '@angular/common/http/src/params';
 
+const params = {
+  headers: new HttpHeaders().set('Content-Type', 'application/json')
+};
 
 @Injectable()
 export class DataService {
@@ -12,42 +15,42 @@ export class DataService {
   constructor(private http: HttpClient) {
   }
 
-  getTodo<Todo>(url, params): Observable<any> {
+  getTodo<Todo>(url): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
 
-  putTodo(url, body, params): Observable<any> {
+  putTodo(url, body): Observable<any> {
     return this.http.put<any>(this.baseUrl + '/' + url, body, params);
   }
 
-  patchTodo(url, body, params): Observable<any> {
+  patchTodo(url, body): Observable<any> {
     return this.http.patch<any>(this.baseUrl + '/' + url, body, params);
   }
 
-  deleteTodo(url, params): Observable<any> {
+  deleteTodo(url): Observable<any> {
     return this.http.delete<any>(this.baseUrl + '/' + url, params);
   }
 
-  postLogin(url, body, params): Observable<any> {
+  postLogin(url, body): Observable<any> {
     return this.http.post<any>(this.baseUrl + '/' + url, body, params);
   }
 
-  getMessage<Message>(url, params): Observable<any> {
+  getMessage<Message>(url): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
-  putMessage(url, body, params): Observable<any> {
+  putMessage(url, body): Observable<any> {
     return this.http.put<any>(this.baseUrl + '/' + url, body, params);
   }
 
-  getUser<User>(url, params): Observable<any> {
+  getUser<User>(url): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
 
-  getGroups<Group>(url, params): Observable<any> {
+  getGroups<Group>(url): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/' + url, params);
   }
 
-  putGroups(url, body, params): Observable<any> {
+  putGroups(url, body): Observable<any> {
     return this.http.put(this.baseUrl + '/' + url, body, params);
   }
 

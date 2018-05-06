@@ -7,15 +7,6 @@ import {Observable} from 'rxjs/Observable';
 import {Subject} from 'rxjs/Subject';
 import {DataService} from '../APIService';
 
-// Specify http header options here
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
-
-
-
 @Injectable()
 export class GroupService {
 
@@ -47,7 +38,7 @@ export class GroupService {
   }
 
   putGroupBackend(group: Group) {
-    return this.apiService.putGroups('groups', JSON.stringify(group), httpOptions).map(
+    return this.apiService.putGroups('groups', JSON.stringify(group)).map(
       (response: Response) => {
         console.log(response);
       }
@@ -62,7 +53,7 @@ export class GroupService {
 
   getGroupBackend() {
     // Reach REST endpoint
-    return this.apiService.getGroups<Group[]>('groups', httpOptions).map(
+    return this.apiService.getGroups<Group[]>('groups').map(
       (groups) => {
         console.log(groups);
         console.log('Groups are set!');

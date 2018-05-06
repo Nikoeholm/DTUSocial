@@ -6,11 +6,7 @@ import { Message } from '../model/message.model';
 import {DataService} from '../APIService';
 
 // Specify http header options here
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json',
-  })
-};
+
 @Injectable()
 export class ChatService {
 
@@ -25,7 +21,7 @@ export class ChatService {
   }
 
   sendMessage(message: Message) {
-    return this.apiService.putMessage('chat/personal', JSON.stringify(message), httpOptions)
+    return this.apiService.putMessage('chat/personal', JSON.stringify(message))
       .map(
         (response: Response) => {
           console.log(response);
@@ -41,7 +37,7 @@ export class ChatService {
 
   retrieveChat(chatterId: String) {
     // const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
-    return this.apiService.getMessage<Message[]>('chat/personal/' + chatterId, httpOptions)
+    return this.apiService.getMessage<Message[]>('chat/personal/' + chatterId)
       .map(
         (messages) => {
           console.log(messages);

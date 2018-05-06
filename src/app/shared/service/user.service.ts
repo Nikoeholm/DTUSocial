@@ -5,13 +5,6 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import {DataService} from '../APIService';
 
-// Specify http header options here
-const httpOptions = {
-    headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-    })
-};
-
 @Injectable()
 export class UserService {
     user: User;
@@ -28,7 +21,7 @@ export class UserService {
     }
 
     retrieveUser(username: string) {
-        return this.apiService.getUser<User>('users/' + username, httpOptions).map(
+        return this.apiService.getUser<User>('users/' + username).map(
       (user) => {
           console.log(user);
           console.log('User is set!');

@@ -8,12 +8,6 @@ import { Credentials } from '../model/credentials.model';
 import { UserService } from './user.service';
 import {DataService} from '../APIService';
 
-// Specify http header options here
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type':  'application/json',
-  })
-};
 @Injectable()
 export class LoginService {
 
@@ -26,7 +20,7 @@ export class LoginService {
 
   public postCredentials(credentials: Credentials) {
     // Reach to rest-endpoint
-    return this.apiService.postLogin('login', JSON.stringify(credentials), httpOptions)
+    return this.apiService.postLogin('login', JSON.stringify(credentials))
     .map(
       (response: Response) => {
         this.token = response.toString();
