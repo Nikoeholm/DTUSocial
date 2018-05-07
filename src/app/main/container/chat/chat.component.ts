@@ -5,6 +5,7 @@ import { User } from '../../../shared/model/user.model';
 import { ChatService } from '../../../shared/service/chat.service';
 import { Message } from '../../../shared/model/message.model';
 import { UserService } from '../../../shared/service/user.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -12,7 +13,7 @@ import { UserService } from '../../../shared/service/user.service';
   styleUrls: ['./chat.component.css'],
   providers: [ChatService]
 })
-export class ChatComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
+export class ChatComponent implements OnInit, OnDestroy {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
   message: Message;
@@ -31,9 +32,12 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
   }
 
   ngOnInit() {
+    console.log('ChatComponent started');
     this.user = this.userService.getUser();
+    console.log('ChatComponent user');
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
+        console.log('ChatComponent subscribed');
         this.chatter = this.usersService.getUser(index);
         console.log('Chatter: ' + this.chatter.brugernavn);
         // Load chat
@@ -76,17 +80,5 @@ export class ChatComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
     this.messageInputRef.nativeElement.value = '';
 
 }
-
-  ngOnChanges(changes: SimpleChanges): void {
-
-  }
-
-  ngDoCheck(): void {
-    if (this.chat == null) {
-      this.retreiveChat();
-    }
-  }
-
-
 
 }

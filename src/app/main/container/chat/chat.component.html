@@ -1,7 +1,9 @@
 
 <mat-tab-group>
-    <mat-tab label="Chat">
-      <div class="content">
+  <mat-tab label="Chat">
+
+
+<div class="content">
 <ng-template [ngIf]="!hasChat">
   <p>You havn't chatted with yet!</p>
 </ng-template>
@@ -28,7 +30,7 @@
 </p>
 <hr>
 
-</mat-tab>
+  </mat-tab>
   <mat-tab label="Drev">
     <app-drive></app-drive>
   </mat-tab>
