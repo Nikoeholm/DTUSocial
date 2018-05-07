@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, OnDestroy, OnChanges, SimpleChanges, DoCheck} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
@@ -12,7 +12,7 @@ import { UserService } from '../../../shared/service/user.service';
   styleUrls: ['./chat.component.css'],
   providers: [ChatService]
 })
-export class ChatComponent implements OnInit, OnDestroy {
+export class ChatComponent implements OnInit, OnDestroy, OnChanges, DoCheck {
   @ViewChild('messageInput') messageInputRef: ElementRef;
   onPersonalConversationSubs: Subscription;
   message: Message;
@@ -67,7 +67,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.message = new Message(currentMessage,
                                 this.user.brugernavn,
                                 this.chatter.brugernavn,
-                                0);
+                                'just now');
     this.chatService.sendMessage(this.message).subscribe(
       (response) => console.log('Message sent'),
       (error) => console.error('Message couldn\'t be sent!')
@@ -76,6 +76,16 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messageInputRef.nativeElement.value = '';
 
 }
+
+  ngOnChanges(changes: SimpleChanges): void {
+
+  }
+
+  ngDoCheck(): void {
+    if (this.chat == null) {
+      this.retreiveChat();
+    }
+  }
 
 
 

@@ -2,29 +2,11 @@
 <mat-tab-group>
     <mat-tab label="Chat">
       <div class="content">
-<!--  <div class="container">
-    <img src="/assets/blank-profile.png" alt="Avatar">
-    <p class="text-style">Hello. How are you today?</p>
-    <span class="time-right">11:00</span>
-  </div>
-
-  <div class="container darker">
-    <img src="/assets/blank-profile.png" alt="Avatar" class="right">
-    <p class="text-style">Hey! I'm fine. Thanks for asking!</p>
-    <span class="time-left">11:01</span>
-  </div>
-
-  <div class="container">
-    <img src="/assets/blank-profile.png" alt="Avatar">
-    <p class="text-style">Sweet! So, what do you wanna do today?</p>
-    <span class="time-right">11:02</span>
-  </div>
--->
 <ng-template [ngIf]="!hasChat">
-  <p>You havn't chatted with yet!</p>
+  <p>You havn't chatted with {{ chatter.fornavn }} yet!</p>
 </ng-template>
 <ng-template [ngIf]="hasChat">
-  <div *ngFor="let message of chat">
+  <div *ngFor="let message of chat; let i = index">
     <div
     class="container"
     [ngClass]="{'darker':message.interactorId !== user.brugernavn}">
