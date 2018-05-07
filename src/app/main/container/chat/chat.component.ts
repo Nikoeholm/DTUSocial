@@ -1,10 +1,11 @@
-import {Component, ElementRef, OnInit, ViewChild, OnDestroy} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild, OnDestroy, OnChanges, SimpleChanges, DoCheck} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
 import { ChatService } from '../../../shared/service/chat.service';
 import { Message } from '../../../shared/model/message.model';
 import { UserService } from '../../../shared/service/user.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',
@@ -31,9 +32,12 @@ export class ChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    console.log('ChatComponent started');
     this.user = this.userService.getUser();
+    console.log('ChatComponent user');
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
+        console.log('ChatComponent subscribed');
         this.chatter = this.usersService.getUser(index);
         console.log('Chatter: ' + this.chatter.brugernavn);
         // Load chat
@@ -67,7 +71,7 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.message = new Message(currentMessage,
                                 this.user.brugernavn,
                                 this.chatter.brugernavn,
-                                0);
+                                'just now');
     this.chatService.sendMessage(this.message).subscribe(
       (response) => console.log('Message sent'),
       (error) => console.error('Message couldn\'t be sent!')
@@ -76,7 +80,5 @@ export class ChatComponent implements OnInit, OnDestroy {
     this.messageInputRef.nativeElement.value = '';
 
 }
-
-
 
 }

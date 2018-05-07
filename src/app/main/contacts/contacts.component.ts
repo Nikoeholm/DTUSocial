@@ -3,7 +3,7 @@ import {User} from '../../shared/model/user.model';
 import {UsersService} from '../../shared/service/users.service';
 import {GroupsComponent} from '../groups/groups.component';
 import { UserService } from '../../shared/service/user.service';
-import {Params} from '@angular/router';
+import {Params, Router} from '@angular/router';
 import {Group} from '../../shared/model/group.model';
 import {GroupService} from '../../shared/service/group.service';
 
@@ -20,7 +20,8 @@ export class ContactsComponent implements OnInit {
 
   constructor(private userService: UserService,
               private usersService: UsersService,
-              private groupService: GroupService) { }
+              private groupService: GroupService,
+              private router: Router) { }
 
   ngOnInit() {
 

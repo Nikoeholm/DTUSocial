@@ -1,30 +1,14 @@
 
 <mat-tab-group>
-    <mat-tab label="Chat">
-      <div class="content">
-<!--  <div class="container">
-    <img src="/assets/blank-profile.png" alt="Avatar">
-    <p class="text-style">Hello. How are you today?</p>
-    <span class="time-right">11:00</span>
-  </div>
+  <mat-tab label="Chat">
 
-  <div class="container darker">
-    <img src="/assets/blank-profile.png" alt="Avatar" class="right">
-    <p class="text-style">Hey! I'm fine. Thanks for asking!</p>
-    <span class="time-left">11:01</span>
-  </div>
 
-  <div class="container">
-    <img src="/assets/blank-profile.png" alt="Avatar">
-    <p class="text-style">Sweet! So, what do you wanna do today?</p>
-    <span class="time-right">11:02</span>
-  </div>
--->
+<div class="content">
 <ng-template [ngIf]="!hasChat">
   <p>You havn't chatted with yet!</p>
 </ng-template>
 <ng-template [ngIf]="hasChat">
-  <div *ngFor="let message of chat">
+  <div *ngFor="let message of chat; let i = index">
     <div
     class="container"
     [ngClass]="{'darker':message.interactorId !== user.brugernavn}">
@@ -42,11 +26,11 @@
   <mat-form-field class="full-width">
     <input type="text" id="message" matInput placeholder="Indtast din besked her..." #messageInput>
   </mat-form-field>
-  <button mat-raised-button (click)="onSendMessage()">Send</button>
+  <button [disabled]="messageInput.value === ''" mat-raised-button (click)="onSendMessage()">Send</button>
 </p>
 <hr>
 
-</mat-tab>
+  </mat-tab>
   <mat-tab label="Drev">
     <app-drive></app-drive>
   </mat-tab>

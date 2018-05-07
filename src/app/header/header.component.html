@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
       <span class="padding-right">DTU Social</span>
-      <button mat-button routerLink="/home">Home</button>
+      <button mat-button [routerLink]="['/home']">Home</button>
       <button mat-button routerLink="/groups">Grupper</button>
       <button mat-button routerLink="/todo" (click)="reload()">Todo</button>
       <span class="empty-spacer"></span>
