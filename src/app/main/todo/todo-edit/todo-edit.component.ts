@@ -12,6 +12,7 @@ import {Observable} from 'rxjs/Observable';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
 import { UserService } from '../../../shared/service/user.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-todo-edit',
@@ -29,20 +30,29 @@ export class TodoEditComponent implements OnInit, OnDestroy {
   onPersonalConversationSubs: Subscription;
   editedTodo: Todo;
   chatter: User;
+  title = 'Mine Todos';
 
   constructor(private todoService: TodoService,
               private usersService: UsersService,
-              private userService: UserService) {
+              private userService: UserService,
+              private activatedRouter: ActivatedRoute) {
   }
 
   ngOnInit() {
+
+    this.activatedRouter.url.subscribe(url => {
+      console.log(url);
+    });
+
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
       (index: number) => {
         this.chatter = this.usersService.getUser(index);
+        this.title = 'Fælles Todos';
         // Get todos from backend
         this.sharedId = this.userService.getUser().brugernavn + '' + this.chatter.brugernavn;
       }
     );
+
 
     // Event listener
     this.subscription = this.todoService.startedEditing
@@ -78,7 +88,9 @@ export class TodoEditComponent implements OnInit, OnDestroy {
             console.log(response);
             if (this.sharedId == null) {
               this.todoService.getPersonalTodos().subscribe(
-                (todos) => console.log('Personal: Todos loaded from backend')
+                (todos) => {
+                  console.log('Personal: Todos loaded from backend'); }
+
               );
             } else {
               this.todoService.getSharedTodos(this.sharedId).subscribe(

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../shared/service/login.service';
 import { Router } from '@angular/router';
+import {TodoService} from '../shared/service/todo.service';
+import {TodoEditComponent} from '../main/todo/todo-edit/todo-edit.component';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +12,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService: LoginService,
-              private router: Router) { }
+  constructor(private loginService: LoginService, private todoService: TodoService) { }
+
+  title: string;
 
   ngOnInit() {
   }
@@ -18,6 +22,13 @@ export class HeaderComponent implements OnInit {
   logout() {
     console.log('Logged out!');
     this.loginService.logout();
+  }
+
+  reload() {
+    this.todoService.getPersonalTodos().subscribe( (response) => {
+      console.log('Personal TODOs loaded');
+    }
+  );
   }
 
 }

@@ -6,6 +6,7 @@ import { UsersService } from '../../shared/service/users.service';
 import { User } from '../../shared/model/user.model';
 import { UserService } from '../../shared/service/user.service';
 
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo-list.component.html',
@@ -17,11 +18,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
   onPersonalConversationSubs: Subscription;
   chatter: User;
   sharedId: string;
-  showSpinner: boolean = false;
+  showSpinner = false;
+  title: string;
 
   constructor(private todoService: TodoService,
     private usersService: UsersService,
-    private userService: UserService) { }
+    private userService: UserService) {
+
+  }
 
   ngOnInit() {
     this.onPersonalConversationSubs = this.usersService.startPersonalConversation.subscribe(
@@ -33,25 +37,27 @@ export class TodoListComponent implements OnInit, OnDestroy {
         this.sharedId = this.userService.getUser().brugernavn + '' + this.chatter.brugernavn;
         console.log('Shared Id: ' + this.sharedId);
         this.todoService.getSharedTodos(
-                                        this.userService.getUser().brugernavn
-                                        + '' + this.chatter.brugernavn).subscribe(
-            (response) => {
-              this.showSpinner = false;
-              console.log('Shared todos loaded');
-            },
-            (error) => this.showSpinner = false);
+          this.userService.getUser().brugernavn
+          + '' + this.chatter.brugernavn).subscribe(
+          (response) => {
+            this.showSpinner = false;
+            console.log('Shared todos loaded');
+            this.title = 'Fælles Todo';
+          },
+          (error) => this.showSpinner = false);
       }
     );
 
     if (!this.sharedId == null) {
-      // Retrieve TODOS from backend
+    // Retrieve TODOS from backend
+      this.title = 'Mine Todos';
       this.todoService.getPersonalTodos().subscribe(
         (response) => {
           this.showSpinner = false,
-          console.log('Personal todos loaded');
-      });
-    }
-
+            console.log('Personal todos loaded');
+        });
+  }
+   
     this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: Todo[]) => {
       this.todos = todos;
