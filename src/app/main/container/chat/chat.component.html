@@ -7,7 +7,7 @@
 <ng-template [ngIf]="!hasChat">
   <p>You havn't chatted with yet!</p>
 </ng-template>
-<ng-template [ngIf]="hasChat">
+<ng-template [ngIf]="hasChat" >
   <div *ngFor="let message of chat; let i = index">
     <div
     class="container"
