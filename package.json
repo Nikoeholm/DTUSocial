@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "compodoc": "./node_modules/.bin/compodoc -p src/tsconfig.app.json",
     "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
