@@ -12,7 +12,8 @@
       <input type="text"
              id="userName"
              formControlName="userName"
-             placeholder="Username"/>
+             placeholder="Username"
+             #username />
     <span
         *ngIf="!loginForm.get('userName').valid && loginForm.get('userName').touched"
         >
@@ -24,7 +25,8 @@
       <input type="password"
              id="passWord"
              formControlName="passWord"
-             placeholder="Password"/>
+             placeholder="Password"
+             #password/>
       <span
         *ngIf="!loginForm.get('passWord').valid && loginForm.get('passWord').touched"
         class="">
@@ -33,7 +35,8 @@
           Udfyld Adgangskode
         </span><br>
       </span><br>
-      <button>login</button>
+      <button
+          [disabled]="username.value === '' || password.value === '' ">Login</button>
       <p class="message"> <a href="#">Glemt adgangkode?</a></p>
     </form>
   </div>

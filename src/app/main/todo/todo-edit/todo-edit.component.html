@@ -21,7 +21,7 @@
         color="primary"
         mat-button
         (click)="onAddTodo(form)"
-        [disabled]="!form.valid">{{editMode ? 'Ret todo': 'Tilføj'}}</button>
+        [disabled]="!form.valid || todomessage.value === ''">{{editMode ? 'Ret todo': 'Tilføj'}}</button>
     </div>
   </div>
 </div>
