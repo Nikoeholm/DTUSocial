@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, NgForm, Validators} from '@angular/forms';
-import {Credentials} from '../../shared/model/credentials.model';
-import { LoginService } from '../../shared/service/login.service';
+import {Credentials} from '../shared/model/credentials.model';
+import { LoginService } from '../shared/service/login.service';
 import {Router} from '@angular/router';
 
 

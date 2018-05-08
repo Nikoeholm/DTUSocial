@@ -14,7 +14,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MaterialModule } from './material.module';
 import { RoutingModule } from './routing.module';
-import { LoginComponent } from './main/login/login.component';
+import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginService } from './shared/service/login.service';
