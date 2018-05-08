@@ -36,19 +36,15 @@ export class ChatService {
   }
 
   retrieveChat(chatterId: String) {
-    // const chatter = JSON.parse('{ "senderId": "' + chatterId + '"}');
     return this.apiService.get<Message[]>('chat/personal/' + chatterId)
       .map(
         (messages) => {
           console.log(messages);
           for (const message of messages) {
             const unixTime = message.time;
-            const time = new Date(unixTime * 1000);
-            message.time = time;
+            message.time = new Date(unixTime * 1000);
           }
           this.chat = messages;
-          // Time conversition
-          // this.convertUnixTime(messages);
         }
       )
       .catch(
