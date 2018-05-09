@@ -8,7 +8,6 @@ import {TodoService} from '../../../shared/service/todo.service';
 import {Todo} from '../../../shared/model/todo-list.model';
 import {NgForm} from '@angular/forms';
 import {Subscription} from 'rxjs/Subscription';
-import {Observable} from 'rxjs/Observable';
 import { UsersService } from '../../../shared/service/users.service';
 import { User } from '../../../shared/model/user.model';
 import { UserService } from '../../../shared/service/user.service';

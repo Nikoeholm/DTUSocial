@@ -1,9 +1,8 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {Todo} from '../model/todo-list.model';
 import {Subject} from 'rxjs/Subject';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {User} from '../model/user.model';
 import {UserService} from './user.service';
 import {DataService} from '../APIService';
 
@@ -143,24 +142,6 @@ export class TodoService {
     this.todosChanged.next(this.todos.slice());
   }
 
-  /*
-    getPersonalTodos(id: string) {
-       // Reach REST endpoint
-       return this.http.get<Todo[]>('http://localhost:8080/DTUSocial/todos/personal/' + id, httpOptions).map(
-        (todos) => {
-            this.setTodos(todos);
-            return console.log(todos);
-        }
-      )
-        .catch(
-          (error: Response) => {
-            console.log(error);
-            return Observable.throw('TodoService: Couldn\'t get personal todos');
-          }
-        );
-
-    }
-    */
 
   putPersonalTodo(id: string, todo: Todo) {
     // Reach REST endpoint

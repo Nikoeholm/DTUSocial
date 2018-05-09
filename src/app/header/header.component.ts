@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../shared/service/login.service';
-import { Router } from '@angular/router';
 import {TodoService} from '../shared/service/todo.service';
-import {TodoEditComponent} from '../main/todo/todo-edit/todo-edit.component';
-import {NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-header',

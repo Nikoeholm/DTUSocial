@@ -1,6 +1,4 @@
-import { HttpHeaders, HttpClient } from '@angular/common/http';
 import {EventEmitter, Injectable} from '@angular/core';
-
 import 'rxjs/Rx';
 import {Group} from '../model/group.model';
 import {Observable} from 'rxjs/Observable';
@@ -10,7 +8,7 @@ import {DataService} from '../APIService';
 @Injectable()
 export class GroupService {
 
-  constructor(private http: HttpClient, private apiService: DataService) { }
+  constructor(private apiService: DataService) { }
 
   groups: Group[] = [];
 

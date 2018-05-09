@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Observable} from 'rxjs/Observable';
@@ -24,7 +23,6 @@ export class LoginService {
     .map(
       (response: Response) => {
         this.token = response.toString();
-        // console.log(response.headers.get('Authorisation'));
         // Save the token in Localstorage of browser
         // Run command in console, to check if token is saved: localStorage;
         window.localStorage.setItem('access_token', this.token);

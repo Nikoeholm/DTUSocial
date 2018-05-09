@@ -23,8 +23,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnInit() {
     if (this.loginService.isAuthenticated()) {
       this.router.navigate(['/home']);
-    }
-    if (!this.loginService.isAuthenticated()) {
+    } else {
       this.router.navigate(['/login']);
     }
     this.loginForm = new FormGroup({

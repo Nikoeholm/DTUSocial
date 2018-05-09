@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from './shared/service/login.service';
-import { UsersService } from './shared/service/users.service';
-import { TodoService } from './shared/service/todo.service';
-import { User } from './shared/model/user.model';
 import { UserService } from './shared/service/user.service';
-import { AUTOCOMPLETE_OPTION_HEIGHT } from '@angular/material';
+
 
 @Component({
   selector: 'app-root',

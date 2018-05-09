@@ -5,7 +5,6 @@ import { User } from '../../../shared/model/user.model';
 import { ChatService } from '../../../shared/service/chat.service';
 import { Message } from '../../../shared/model/message.model';
 import { UserService } from '../../../shared/service/user.service';
-import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-chat',

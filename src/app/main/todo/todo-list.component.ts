@@ -14,7 +14,6 @@ import { UserService } from '../../shared/service/user.service';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   todos: Todo[];
-  onPersonalTodoSubs: Subscription;
   onPersonalConversationSubs: Subscription;
   chatter: User;
   sharedId: string;
@@ -57,7 +56,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
             console.log('Personal todos loaded');
         });
   }
-   
+
     this.todos = this.todoService.getTodos();
     this.todoService.todosChanged.subscribe((todos: Todo[]) => {
       this.todos = todos;
