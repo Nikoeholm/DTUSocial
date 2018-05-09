@@ -57,9 +57,13 @@
 
 
 .full-width {
-  width: 90%;
+  width: 85%;
 }
 
 .text-style {
   color: white;
+}
+
+.center {
+  text-align: center;
 }

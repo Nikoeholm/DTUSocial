@@ -12,7 +12,7 @@
       <input type="text"
              id="userName"
              formControlName="userName"
-             placeholder="Username"
+             placeholder="Brugernavn"
              #username />
     <span
         *ngIf="!loginForm.get('userName').valid && loginForm.get('userName').touched"
@@ -25,7 +25,7 @@
       <input type="password"
              id="passWord"
              formControlName="passWord"
-             placeholder="Password"
+             placeholder="Adgangskode"
              #password/>
       <span
         *ngIf="!loginForm.get('passWord').valid && loginForm.get('passWord').touched"

@@ -2,10 +2,10 @@
 <mat-tab-group>
   <mat-tab label="Chat">
 
-
 <div class="content">
 <ng-template [ngIf]="!hasChat">
-  <p>You havn't chatted with yet!</p>
+  <br>
+  <p class="center">Du har endnu ikke skrevet med brugeren!</p>
 </ng-template>
 <ng-template [ngIf]="hasChat" >
   <div *ngFor="let message of chat; let i = index">
